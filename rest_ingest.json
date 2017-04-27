@@ -1,0 +1,49 @@
+{
+    "appid"     : "95e3bcff-bfca-454d-b59e-768da6280c38",
+    "name"    : "REST Data Source",
+    "description" : "This app allows external implementations to push ingest data like containers and artifacts via REST API into Phantom.",
+    "verbose" : "STIX parser tested with STIX version 1.2 xmls.",
+    "type": "generic",
+    "publisher": "Phantom",
+    "main_module" : "rest_connector.pyc",
+    "app_version": "1.2.27",
+    "utctime_updated": "2016-12-21T20:02:27.000000Z",
+    "package_name": "phantom_restingest",
+    "product_vendor": "Generic",
+    "product_name": "REST Data Source",
+    "min_phantom_version": "1.2.236",
+    "logo": "rest.png",
+    "license": "Copyright (c) Phantom Cyber Corporation 2015-2016",
+    "product_version_regex": ".*",
+
+    "require_auth_token": true,
+    "rest_handler": "rest_connector.handle_request",
+    "configuration": {
+      "parse_script": {
+        "data_type": "file",
+        "description": "Custom Python REST handler",
+        "extensions": ".py",
+        "order": 2,
+        "required": false
+      },
+      "stock_scripts": {
+        "data_type": "string",
+        "description": "Preconfigured parsing scripts",
+        "order": 3,
+        "value_list": ["STIX", "FireEye"],
+        "required": false
+      },
+      "ph": {
+        "data_type": "ph",
+        "order": 1
+      },
+      "source_ip": {
+        "data_type": "string",
+        "description": "IP of host making the REST calls (or \"any\")",
+        "order": 0,
+        "required": true
+      }
+    },
+    "actions": []
+}
+
