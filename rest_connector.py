@@ -93,7 +93,7 @@ def handle_request(request, path_parts):
         if not container.get('label'):
           container['label'] = asset.configuration.get('ingest', {}).get('container_label')
         try:
-          cur_response = ph_models.Container.rest_create(container, None, request)
+          cur_response = ph_models.Container.rest_create(container, request.user, request)
           response_json = json.loads(cur_response.content)
         except ph_shared.Http400 as e:
           if e.message.startswith('duplicate'):  # pylint: disable=E1101
@@ -123,7 +123,7 @@ def handle_request(request, path_parts):
               else:
                 a['run_automation'] = False
 
-            cur_response = ph_models.Artifact.rest_create(copy.deepcopy(a), asset, request)
+            cur_response = ph_models.Artifact.rest_create(copy.deepcopy(a), request.user, request)
             response_json = json.loads(cur_response.content)
             response_json['document'] = 'artifact'
             messages.append(response_json)
