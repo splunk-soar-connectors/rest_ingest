@@ -11,7 +11,7 @@
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
-    "min_phantom_version": "1.2.236",
+    "min_phantom_version": "3.0.100",
     "logo": "rest.png",
     "license": "Copyright (c) Phantom Cyber Corporation 2015-2016",
     "product_version_regex": ".*",
