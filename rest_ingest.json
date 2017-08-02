@@ -1,8 +1,8 @@
 {
     "appid"     : "95e3bcff-bfca-454d-b59e-768da6280c38",
     "name"    : "REST Data Source",
-    "description" : "This app implements <b>custom REST handlers</b> for external implementations to push <b>ingest data</b> such as events and artifacts into Phantom.",
-    "verbose" : "STIX parser tested with STIX version 1.2 xmls.",
+    "description" : "This app implements <b>custom REST handlers</b> for external implementations to push <b>ingest data</b> such as events and artifacts into Phantom",
+    "verbose" : "STIX parser tested with STIX version 1.2 xmls",
     "type": "generic",
     "publisher": "Phantom",
     "main_module" : "rest_connector.pyc",
