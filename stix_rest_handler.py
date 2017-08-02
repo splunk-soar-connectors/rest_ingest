@@ -3,7 +3,7 @@
 # --
 # File: stix_rest_handler.py
 #
-# Copyright (c) Phantom Cyber Corporation, 2014-2016
+# Copyright (c) Phantom Cyber Corporation, 2014-2017
 #
 # This unpublished material is proprietary to Phantom Cyber.
 # All rights reserved. The methods and
