@@ -1,41 +1,39 @@
 {
-    "appid": "95e3bcff-bfca-454d-b59e-768da6280c38",
-    "name": "REST Data Source",
-    "description": "This app implements <b>custom REST handlers</b> for external implementations to push <b>ingest data</b> such as events and artifacts into Phantom",
-    "verbose": "STIX parser tested with STIX version 1.2 xmls",
+    "appid"     : "95e3bcff-bfca-454d-b59e-768da6280c38",
+    "name"    : "REST Data Source",
+    "description" : "This app implements <b>custom REST handlers</b> for external implementations to push <b>ingest data</b> such as events and artifacts into Phantom",
+    "verbose" : "STIX parser tested with STIX version 1.2 xmls",
     "type": "generic",
     "publisher": "Phantom",
-    "main_module": "rest_connector.pyc",
-    "app_version": "1.2.32",
-    "utctime_updated": "2017-12-21T03:24:48.000000Z",
+    "main_module" : "rest_connector.pyc",
+    "app_version": "1.2.30",
+    "utctime_updated": "2017-08-02T21:44:41.000000Z",
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
     "min_phantom_version": "3.0.159",
-    "logo": "logo_restapi.svg",
-    "logo_dark": "logo_restapi_dark.svg",
+    "logo": "rest.png",
     "license": "Copyright (c) Phantom Cyber Corporation 2015-2017",
     "product_version_regex": ".*",
+
     "require_auth_token": true,
     "rest_handler": "rest_connector.handle_request",
     "configuration": {
-        "parse_script": {
-            "data_type": "file",
-            "description": "Custom Python REST handler",
-            "extensions": ".py",
-            "order": 0,
-            "required": false
-        },
-        "stock_scripts": {
-            "data_type": "string",
-            "description": "Preconfigured parsing scripts",
-            "order": 1,
-            "value_list": [
-                "STIX",
-                "FireEye"
-            ],
-            "required": false
-        }
+      "parse_script": {
+        "data_type": "file",
+        "description": "Custom Python REST handler",
+        "extensions": ".py",
+        "order": 0,
+        "required": false
+      },
+      "stock_scripts": {
+        "data_type": "string",
+        "description": "Preconfigured parsing scripts",
+        "order": 1,
+        "value_list": ["STIX", "FireEye"],
+        "required": false
+      }
     },
     "actions": []
 }
+
