@@ -14,7 +14,7 @@
     "min_phantom_version": "3.0.159",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
-    "license": "Copyright (c) Phantom Cyber Corporation 2015-2017",
+    "license": "Copyright (c) Phantom Cyber Corporation, 2015-2018",
     "product_version_regex": ".*",
     "require_auth_token": true,
     "rest_handler": "rest_connector.handle_request",
