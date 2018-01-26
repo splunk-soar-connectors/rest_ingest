@@ -7,7 +7,7 @@
     "publisher": "Phantom",
     "main_module": "rest_connector.pyc",
     "app_version": "1.2.32",
-    "utctime_updated": "2018-01-25T03:06:49.000000Z",
+    "utctime_updated": "2018-01-26T00:50:25.000000Z",
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
