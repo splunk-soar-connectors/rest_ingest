@@ -1,3 +1,5 @@
 rest_connector.py
-__init__.py
+docker-compose.yml
+Makefile
 .git*
+__init__.py
