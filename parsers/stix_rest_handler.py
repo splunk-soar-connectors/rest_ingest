@@ -15,15 +15,15 @@
 # This file contains the code to parse a STIX xml file.
 #
 # --
-
-import cStringIO
 import libtaxii as lt
 from stix.core import STIXPackage
 from collections import OrderedDict
 from jsonpath_rw import parse as jp_parse
+from six import string_types
 import uuid
 from copy import deepcopy
-import simplejson as json
+import json
+from phantom_common.compat import StringIO
 
 # dictionary that contains the common keys in the container
 _container_common = {
@@ -65,8 +65,8 @@ def process_results(results):
 
 def handle_request(f):
     # The django request object does not support seek, so move it to cSTringIO
-    cstrio = cStringIO.StringIO()
-    cstrio.write(f.read())
+    cstrio = StringIO()
+    cstrio.write(f.read().decode('utf-8'))
     cstrio.seek(0)
 
     # first try to parse it as a taxii message
@@ -104,7 +104,7 @@ def parse_domain_obj_type(prop, obs_json):
 
     value = prop['value']
 
-    if type(value) == str:
+    if isinstance(value, string_types):
         cef = dict()
         artifact = dict()
         _set_cef_key(prop, 'value', cef, 'destinationDnsDomain')
@@ -142,7 +142,7 @@ def parse_hash_object(file_hash, obs_json, file_name=None, file_size=None, file_
 
     ret_val = False
 
-    if type(hash_value) == str:
+    if isinstance(hash_value, string_types):
         cef = dict()
         _set_cef_key(file_hash, 'simple_hash_value', cef, 'fileHash')
         if len(cef) == 0:
@@ -371,7 +371,7 @@ def parse_port_obj_type(prop, obs_json):
     if port_value is None:
         return
 
-    if type(port_value) == str:
+    if isinstance(port_value, string_types):
         artifact = dict()
         cef = dict()
         _set_cef_key(protocol_value, 'value', cef, 'transportProtocol')
@@ -419,7 +419,7 @@ def parse_address_obj_type(prop, obs_json):
     if addr_value is None:
         return
 
-    if type(addr_value) == str:
+    if isinstance(addr_value, string_types):
         artifact = dict()
         cef = dict()
         _set_cef_key(prop, 'address_value', cef, 'destinationAddress')
@@ -463,7 +463,7 @@ def parse_common_obj_type(prop, obs_json, key_name, cef_key, artifact_name):
 
     artifacts = []
 
-    if type(addr_value) == str:
+    if isinstance(addr_value, string_types):
         artifact = dict()
         cef = dict()
         _set_cef_key(prop, key_name, cef, cef_key)
@@ -815,13 +815,8 @@ def parse_stix(xml_file_object, base_connector=None):
             base_connector.debug_print("Invalid input xml_file_object")
         return None
 
-    # The django request object does not support seek, so move it to cSTringIO
-    cstrio = cStringIO.StringIO()
-    cstrio.write(xml_file_object.read())
-    cstrio.seek(0)
-
     try:
-        stix_pkg = STIXPackage.from_xml(cstrio)
+        stix_pkg = STIXPackage.from_xml(xml_file_object)
     except Exception as e:
         message = "Possibly invalid stix or taxii xml. Error: {0}".format(e.message)
         if base_connector:
@@ -872,7 +867,7 @@ def _get_value(in_dict, in_key, def_val=None, strip_it=True):
     if in_key not in in_dict:
         return def_val
 
-    if type(in_dict[in_key]) != str and type(in_dict[in_key]) != unicode:
+    if not isinstance(in_dict[in_key], string_types):
         return in_dict[in_key]
 
     value = in_dict[in_key].strip() if strip_it else in_dict[in_key]
@@ -1052,7 +1047,7 @@ def parse_taxii_message(taxii_message, base_connector=None):
         # Give it to the stix parser to create the containers and artifacts
         # This code is the only place where the stix parsing will be written
         stix_xml = cb.content
-        cstrio = cStringIO.StringIO()
+        cstrio = StringIO()
         cstrio.write(stix_xml)
         cstrio.seek(0)
 

@@ -12,11 +12,10 @@
 # of Phantom Cyber.
 #
 # --
-
+from six import string_types
 import sys
 import json
-from mimetools import Message
-from StringIO import StringIO
+import email
 from parse import parse
 
 ARTIFACT_LABEL_ALERT = "Alert"
@@ -38,7 +37,7 @@ def _get_value(in_dict, in_key, def_val=None, strip_it=True):
     if in_key not in in_dict:
         return def_val
 
-    if type(in_dict[in_key]) != str and type(in_dict[in_key]) != unicode:
+    if not isinstance(in_dict[in_key], string_types):
         return in_dict[in_key]
 
     value = in_dict[in_key].strip() if strip_it else in_dict[in_key]
@@ -63,8 +62,7 @@ def _set_cef_key(src_dict, src_key, dst_dict, dst_key):
 def set_url(http_header, cef):
     # get the request line
     request, header_str = http_header.split('\r\n', 1)
-
-    headers = Message(StringIO(header_str))
+    headers = email.message_from_string(header_str)
 
     # Remove multiple spaces if any. always happens in http request line
     request = ' '.join(request.split())
@@ -72,7 +70,7 @@ def set_url(http_header, cef):
     url = request.split()[1]
 
     if url:
-        host = headers['Host']
+        host = headers.get('Host')
         if url.startswith('http') is False:
             if host:
                 url = 'http://{0}{1}'.format(host, url)

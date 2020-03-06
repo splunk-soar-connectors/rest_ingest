@@ -20,8 +20,9 @@ import requests
 import copy
 from traceback import format_exc
 import logging
+import six
 
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse
 
 # Phantom imports
 import phantom.app as phantom
@@ -95,8 +96,10 @@ def handle_request(request, path_parts):
         handler_function = None
         if parse_script:
             logger.debug('Trying to exec custom script')
+            # TODO: imp is deprecated since python 3.4. Switch to importlib.util.spec_from_loader /
+            # TODO: importlib.util.module_from_spec, after dropping py2 support.
             mod = imp.new_module(MODULE_NAME)
-            exec parse_script in mod.__dict__
+            exec(parse_script, mod.__dict__)
             if not hasattr(mod, HANDLER_NAME):
                 error = 'Parse script missing handler function "{}"'.format(HANDLER_NAME)
                 logger.error(error)
@@ -108,7 +111,10 @@ def handle_request(request, path_parts):
             parse_script = asset['configuration'].get('stock_scripts')
             logger.debug('Using stock script: {}'.format(parse_script))
             if parse_script in CANNED_SCRIPTS:
-                mod = importlib.import_module(CANNED_SCRIPTS[parse_script])
+                # get the directory of the file
+                dirpath = os.path.abspath(__file__).split('/')[-2]
+                path = '{}.'.format(dirpath) + CANNED_SCRIPTS[parse_script]
+                mod = __import__(path, globals(), locals(), [HANDLER_NAME], -1)
                 handler_function = getattr(mod, HANDLER_NAME)
 
         if not handler_function:
@@ -116,7 +122,7 @@ def handle_request(request, path_parts):
 
         result = handler_function(request)
 
-        if type(result) == str or type(result) == unicode:
+        if isinstance(result, six.string_types):
             # Error condition
             return HttpResponse('Parse script returned an error "{0}"'.format(result), status=400)
 
@@ -150,7 +156,6 @@ def handle_request(request, path_parts):
 
                 response = _call_phantom_rest_api(request, 'container', 'post', json=container)
                 response_json = response.json()
-
 
                 if response_json.get('success', False) is False and response_json.get('message', '').startswith('duplicate'):
                     response = _call_phantom_rest_api(
@@ -203,10 +208,10 @@ def handle_request(request, path_parts):
                             'Unknown error when inserting artifact. Response: {}'.format(response_json),
                             status=400)
 
-        return JsonResponse({
+        return HttpResponse(json.dumps({
             'success': True,
             'messages': messages
-        })
+        }))
 
     except Http404 as e:
         raise
@@ -219,7 +224,7 @@ def handle_request(request, path_parts):
             'message': convert_to_unicode(e),
             'stack': stack
         }
-        return JsonResponse(response, status=400)
+        return HttpResponse(json.dumps(response), status=400)
 
 
 class IngestConnector(BaseConnector):
