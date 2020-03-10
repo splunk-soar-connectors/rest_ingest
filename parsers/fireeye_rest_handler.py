@@ -1,17 +1,10 @@
 #!/bin/env python
 # --
 # File: fireeye_rest_handler.py
+# Copyright (c) 2020 Splunk Inc.
 #
-# Copyright (c) 2017-2020 Splunk, Inc.
-#
-# This unpublished material is proprietary to Splunk, Inc.
-# All rights reserved. The methods and
-# techniques described herein are considered trade secrets
-# and/or confidential. Reproduction or distribution, in whole
-# or in part, is forbidden except by express written permission
-# of Splunk, Inc.
-#
-# --
+# SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
+# without a valid written license from Splunk Inc. is PROHIBITED.
 from six import string_types
 import sys
 import json
