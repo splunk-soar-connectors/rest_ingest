@@ -2,5 +2,3 @@
 .gitlab-ci.yml
 docker-compose.yml
 Makefile
-rest_connector.py
-__init__.py

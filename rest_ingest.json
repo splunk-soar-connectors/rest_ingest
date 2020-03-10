@@ -5,7 +5,7 @@
     "verbose": "STIX parser tested with STIX version 1.2 xmls",
     "type": "generic",
     "publisher": "Splunk",
-    "main_module": "rest_connector.pyc",
+    "main_module": "rest_connector.py",
     "app_version": "1.2.34",
     "utctime_updated": "2020-03-10T14:55:16.358841Z",
     "package_name": "phantom_restingest",
