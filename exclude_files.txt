@@ -1,6 +1,4 @@
-docker-compose.yml
-rest_connector.py
-Makefile
-__init__.py
 .git*
 .gitlab-ci.yml
+docker-compose.yml
+Makefile
