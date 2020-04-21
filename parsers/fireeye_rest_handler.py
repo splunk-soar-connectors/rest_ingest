@@ -228,7 +228,7 @@ def parse_json(input_json):
     try:
         fe_json = json.loads(input_json)
     except Exception as e:
-        return "Unable to parse input json file, possibly incorrect format. Parse Error: {0}".format(e.message)
+        return "Unable to parse input json file, possibly incorrect format. Parse Error: {0}".format(getattr(e, 'message', str(e)))
 
     alerts = fe_json.get('alert')
 

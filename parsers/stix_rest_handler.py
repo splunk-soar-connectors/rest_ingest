@@ -808,7 +808,7 @@ def parse_stix(xml_file_object, base_connector=None):
     try:
         stix_pkg = STIXPackage.from_xml(xml_file_object)
     except Exception as e:
-        message = "Possibly invalid stix or taxii xml. Error: {0}".format(e.message)
+        message = "Possibly invalid stix or taxii xml. Error: {0}".format(getattr(e, 'message', str(e)))
         if base_connector:
             base_connector.debug_print(message)
         return message
