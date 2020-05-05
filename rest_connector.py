@@ -104,9 +104,8 @@ def handle_request(request, path_parts):
             logger.debug('Using stock script: {}'.format(parse_script))
             if parse_script in CANNED_SCRIPTS:
                 # get the directory of the file
-                dirpath = os.path.abspath(__file__).split('/')[-2]
-                path = '{}.'.format(dirpath) + CANNED_SCRIPTS[parse_script]
-                mod = __import__(path, globals(), locals(), [HANDLER_NAME], -1)
+                path = CANNED_SCRIPTS[parse_script]
+                mod = __import__(path, globals(), locals(), [HANDLER_NAME], -1 if six.PY2 else 0)
                 handler_function = getattr(mod, HANDLER_NAME)
 
         if not handler_function:

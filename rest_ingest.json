@@ -11,7 +11,7 @@
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
-    "min_phantom_version": "4.6.19142",
+    "min_phantom_version": "4.8.24304",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
     "license": "Copyright (c) 2016-2020 Splunk Inc.",
