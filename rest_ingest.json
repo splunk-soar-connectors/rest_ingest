@@ -1,21 +1,22 @@
 {
     "appid": "95e3bcff-bfca-454d-b59e-768da6280c38",
     "name": "REST Data Source",
-    "description": "This app implements <b>custom REST handlers</b> for external implementations to push <b>ingest data</b> such as events and artifacts into Phantom",
+    "description": "This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom",
     "verbose": "STIX parser tested with STIX version 1.2 xmls",
     "type": "generic",
-    "publisher": "Phantom",
-    "main_module": "rest_connector.pyc",
-    "app_version": "1.2.32",
-    "utctime_updated": "2018-01-26T00:50:25.000000Z",
+    "publisher": "Splunk",
+    "main_module": "rest_connector.py",
+    "app_version": "1.2.36",
+    "utctime_updated": "2020-05-05T19:15:14.000000Z",
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
-    "min_phantom_version": "3.0.159",
+    "min_phantom_version": "4.8.24304",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
-    "license": "Copyright (c) Phantom Cyber Corporation, 2015-2018",
+    "license": "Copyright (c) 2016-2020 Splunk Inc.",
     "product_version_regex": ".*",
+    "python_version": "2.7",
     "require_auth_token": true,
     "rest_handler": "rest_connector.handle_request",
     "configuration": {
@@ -36,6 +37,98 @@
             ],
             "required": false
         }
+    },
+    "pip_dependencies": {
+        "wheel": [
+            {
+                "module": "jsonpath_rw",
+                "input_file": "wheels/py2/jsonpath_rw-1.4.0-cp27-none-any.whl"
+            },
+            {
+                "module": "weakrefmethod",
+                "input_file": "wheels/py2/weakrefmethod-1.0.3-cp27-none-any.whl"
+            },
+            {
+                "module": "cybox",
+                "input_file": "wheels/shared/cybox-2.1.0.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "decorator",
+                "input_file": "wheels/shared/decorator-4.4.2-py2.py3-none-any.whl"
+            },
+            {
+                "module": "libtaxii",
+                "input_file": "wheels/shared/libtaxii-1.1.114-py2.py3-none-any.whl"
+            },
+            {
+                "module": "mixbox",
+                "input_file": "wheels/shared/mixbox-1.0.3-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ordered_set",
+                "input_file": "wheels/shared/ordered_set-3.1.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ply",
+                "input_file": "wheels/shared/ply-3.11-py2.py3-none-any.whl"
+            },
+            {
+                "module": "python_dateutil",
+                "input_file": "wheels/shared/python_dateutil-2.8.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.14.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "stix",
+                "input_file": "wheels/shared/stix-1.2.0.7-py2.py3-none-any.whl"
+            }
+        ]
+    },
+    "pip3_dependencies": {
+        "wheel": [
+            {
+                "module": "jsonpath_rw",
+                "input_file": "wheels/py3/jsonpath_rw-1.4.0-py3-none-any.whl"
+            },
+            {
+                "module": "cybox",
+                "input_file": "wheels/shared/cybox-2.1.0.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "decorator",
+                "input_file": "wheels/shared/decorator-4.4.2-py2.py3-none-any.whl"
+            },
+            {
+                "module": "libtaxii",
+                "input_file": "wheels/shared/libtaxii-1.1.114-py2.py3-none-any.whl"
+            },
+            {
+                "module": "mixbox",
+                "input_file": "wheels/shared/mixbox-1.0.3-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ordered_set",
+                "input_file": "wheels/shared/ordered_set-3.1.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ply",
+                "input_file": "wheels/shared/ply-3.11-py2.py3-none-any.whl"
+            },
+            {
+                "module": "python_dateutil",
+                "input_file": "wheels/shared/python_dateutil-2.8.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.14.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "stix",
+                "input_file": "wheels/shared/stix-1.2.0.7-py2.py3-none-any.whl"
+            }
+        ]
     },
     "actions": []
 }
