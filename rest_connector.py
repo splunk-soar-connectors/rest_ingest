@@ -21,6 +21,7 @@ import phantom.app as phantom
 from phantom.app import BaseConnector
 from phantom_common.install_info import get_rest_base_url
 from phantom_common.compat import convert_to_unicode
+from phantom_common.phauth import get_creds_from_request
 
 
 logger = logging.getLogger(__name__)
@@ -39,22 +40,23 @@ CANNED_SCRIPTS = {
     "FireEye": "parsers.fireeye_rest_handler",
 }
 
-def _get_auth_token_from_request(request):
-    """Parse authentication information from request headers.
-
-    We can use it to make calls to the phantom rest api.
-    """
-    auth_token = request.META.get('HTTP_PH_AUTH_TOKEN')
-    if not auth_token:
-        raise Exception('Invalid request. Please use "ph-auth-token" to authenticate the request')
-
-    return auth_token
 
 def _call_phantom_rest_api(request, url, method, **kwargs):
     """Make a request to phantom rest api"""
     fn = getattr(requests, method)
     url = os.path.join(REST_BASE_URL, url)
-    headers = {'ph-auth-token': _get_auth_token_from_request(request)}
+
+    headers = {}
+    username, password = get_creds_from_request(request)
+
+    # Authenticate with basic auth
+    if username and password:
+        headers['username'] = username
+        headers['password'] = password
+
+    # Authenticate using a token
+    elif password and not username:
+        headers['ph-auth-token'] = password
 
     return fn(url, headers=headers, verify=False, **kwargs)
 
