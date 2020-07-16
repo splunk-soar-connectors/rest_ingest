@@ -93,7 +93,7 @@ def _call_phantom_rest_api(request, url, method, **kwargs):
     fn = getattr(requests, method)
     url = os.path.join(REST_BASE_URL, url)
 
-    headers = {}
+    headers = kwargs.get('headers', {})
     username, password = _get_creds_from_request(request)
 
     # Authenticate with basic auth
@@ -102,7 +102,7 @@ def _call_phantom_rest_api(request, url, method, **kwargs):
 
     # Authenticate using a token
     elif password and not username:
-        headers['ph-auth-token'] = password
+        headers.setdefault('ph-auth-token', password)
 
     return fn(url, headers=headers, verify=False, **kwargs)
 
