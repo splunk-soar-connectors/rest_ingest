@@ -25,7 +25,6 @@ import phantom.app as phantom
 from phantom.app import BaseConnector
 from phantom_common.install_info import get_rest_base_url
 from phantom_common.compat import convert_to_unicode
-from phantom_common.phauth import get_creds_from_request
 
 
 logger = logging.getLogger(__name__)
