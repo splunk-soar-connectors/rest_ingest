@@ -13,6 +13,10 @@ import copy
 from traceback import format_exc
 import logging
 import six
+import base64
+import re
+
+import encryption_helper
 
 from django.http import Http404, HttpResponse
 
@@ -40,6 +44,49 @@ CANNED_SCRIPTS = {
     "FireEye": "parsers.fireeye_rest_handler",
 }
 
+def _get_creds_from_request(request):
+    """
+    Attempt to get a username and/or password/token out of a request
+
+    This function was copied, as is, from www/phantom_ui/ui/rest.py
+    in order to avoid making platform changes during a patch.
+
+    TODO: the original function should be moved into pycommon and this app 
+    should call that function
+
+    Args:
+        request: A WSGIRequest object.
+
+    Returns:
+        username, password: Either are either strings or None
+    """
+    username, password = None, None
+    prefix = 'Basic '
+    http_auth = request.META.get('HTTP_AUTHORIZATION', '')
+
+    if http_auth.startswith(prefix):
+        creds = base64.b64decode(http_auth[len(prefix):]).decode()  # decode and convert to a string
+
+        # The basic auth header should be encrypted if it starts with enc_ and ends with _enc
+
+        enc_creds = re.match(r'^enc_(.+)_enc$', creds)
+        if enc_creds:
+            enc_creds = enc_creds.group(1)
+            # Encrypted basic auth headers prepend an 8 char salt
+            creds = encryption_helper.decrypt(enc_creds[8:], enc_creds[:8])
+
+        # Raises a ValueError if basic auth holds a token
+        try:
+            username, password = creds.split(':', 1)
+        except ValueError:
+            password = creds
+
+    # If we didn't get a username or a password yet, it must be token auth
+    if not (username or password):
+        password = request.META.get('HTTP_PH_AUTH_TOKEN')
+
+    return username, password
+
 
 def _call_phantom_rest_api(request, url, method, **kwargs):
     """Make a request to phantom rest api"""
@@ -47,7 +94,7 @@ def _call_phantom_rest_api(request, url, method, **kwargs):
     url = os.path.join(REST_BASE_URL, url)
 
     headers = {}
-    username, password = get_creds_from_request(request)
+    username, password = _get_creds_from_request(request)
 
     # Authenticate with basic auth
     if username and password:
