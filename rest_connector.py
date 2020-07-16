@@ -98,8 +98,7 @@ def _call_phantom_rest_api(request, url, method, **kwargs):
 
     # Authenticate with basic auth
     if username and password:
-        headers['username'] = username
-        headers['password'] = password
+        headers['Authorization'] = 'Basic 'username
 
     # Authenticate using a token
     elif password and not username:
