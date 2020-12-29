@@ -226,7 +226,7 @@ def handle_request(request, path_parts):
                     artifact['ingest_app_id'] = connector_id
 
                     if 'run_automation' not in artifact:
-                        if a == artifacts[-1]:
+                        if artifact == artifacts[-1]:
                             artifact['run_automation'] = True
                         else:
                             artifact['run_automation'] = False
