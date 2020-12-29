@@ -6,26 +6,28 @@
     "type": "generic",
     "publisher": "Splunk",
     "main_module": "rest_connector.py",
-    "app_version": "1.2.39",
+    "app_version": "2.0.0",
     "utctime_updated": "2020-07-16T22:10:51.000000Z",
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
-    "min_phantom_version": "4.8.24304",
+    "min_phantom_version": "4.9.39220",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
     "license": "Copyright (c) 2016-2020 Splunk Inc.",
     "product_version_regex": ".*",
-    "python_version": "2.7",
+    "python_version": "3",
     "require_auth_token": true,
+    "latest_tested_versions": [
+        ""
+    ],
     "rest_handler": "rest_connector.handle_request",
     "configuration": {
         "parse_script": {
             "data_type": "file",
             "description": "Custom Python REST handler",
             "extensions": ".py",
-            "order": 0,
-            "required": false
+            "order": 0
         },
         "stock_scripts": {
             "data_type": "string",
@@ -34,8 +36,7 @@
             "value_list": [
                 "STIX",
                 "FireEye"
-            ],
-            "required": false
+            ]
         }
     },
     "pip_dependencies": {
