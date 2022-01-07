@@ -1,3 +1,15 @@
+[comment]: # "Auto-generated SOAR connector documentation"
+# REST Data Source
+
+Publisher: Splunk  
+Connector Version: 2\.0\.2  
+Product Vendor: Generic  
+Product Name: REST Data Source  
+Product Version Supported (regex): "\.\*"  
+Minimum Product Version: 4\.9\.39220  
+
+This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
+
 [comment]: # " File: readme.md"
 [comment]: # "  Copyright (c) 2016-2020 Splunk Inc."
 [comment]: # ""
@@ -74,3 +86,12 @@ License, Copyright 2017- Paul Ganssle
 
 This app makes use of the Python libtaxii module, which is licensed under the BSD License, Copyright
 (c) 2017, The MITRE Corporation.
+
+
+### Configuration Variables
+The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a REST Data Source asset in SOAR.
+
+VARIABLE | REQUIRED | TYPE | DESCRIPTION
+-------- | -------- | ---- | -----------
+**parse\_script** |  optional  | file | Custom Python REST handler
+**stock\_scripts** |  optional  | string | Preconfigured parsing scripts
