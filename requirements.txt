@@ -1,13 +1,13 @@
 Django==3.2.5
-cybox=2.1.0.21
+cybox==2.1.0.21
 decorator==4.4.2
 jsonpath_rw==1.4.0
 libtaxii==1.1.114
 mixbox==1.0.3
-ordered-set==3.1.1
+ordered_set==3.1.1
 parse==1.17.0
 ply=3.11
-python-dateutil==2.8.1
+python_dateutil==2.8.1
 requests==2.25.0
 six==1.14.0
-stix=1.2.0.10
+stix==1.2.0.10
