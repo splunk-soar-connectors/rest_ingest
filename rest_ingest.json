@@ -83,7 +83,7 @@
             },
             {
                 "module": "stix",
-                "input_file": "wheels/shared/stix-1.2.0.7-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/stix-1.2.0.10-py2.py3-none-any.whl"
             }
         ]
     },
