@@ -12,6 +12,7 @@
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
     "min_phantom_version": "4.9.39220",
+    "fips_compliant": true,
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
     "license": "Copyright (c) 2016-2020 Splunk Inc.",
