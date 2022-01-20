@@ -1,10 +1,13 @@
-jsonpath_rw==1.4.0
-cybox
+Django==3.2.5
+cybox==2.1.0.21
 decorator==4.4.2
+jsonpath_rw==1.4.0
 libtaxii==1.1.114
 mixbox==1.0.3
 ordered_set==3.1.1
-ply
+parse==1.17.0
+ply==3.11
 python_dateutil==2.8.1
+requests==2.25.0
 six==1.14.0
-stix
+stix==1.2.0.10
