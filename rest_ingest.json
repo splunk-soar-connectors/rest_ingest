@@ -128,7 +128,7 @@
             },
             {
                 "module": "lxml",
-                "input_file": "wheels/py3/lxml-4.6.4-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
+                "input_file": "wheels/py36/lxml-4.7.1-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
             },
             {
                 "module": "mixbox",
@@ -176,9 +176,97 @@
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.7-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.8-py2.py3-none-any.whl"
             }
         ]
     },
-    "actions": []
+    "actions": [],
+    "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "Django",
+                "input_file": "wheels/py3/Django-3.2.5-py3-none-any.whl"
+            },
+            {
+                "module": "asgiref",
+                "input_file": "wheels/py3/asgiref-3.5.0-py3-none-any.whl"
+            },
+            {
+                "module": "certifi",
+                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "cybox",
+                "input_file": "wheels/shared/cybox-2.1.0.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "decorator",
+                "input_file": "wheels/shared/decorator-4.4.2-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
+                "module": "jsonpath_rw",
+                "input_file": "wheels/py3/jsonpath_rw-1.4.0-py3-none-any.whl"
+            },
+            {
+                "module": "libtaxii",
+                "input_file": "wheels/shared/libtaxii-1.1.114-py2.py3-none-any.whl"
+            },
+            {
+                "module": "lxml",
+                "input_file": "wheels/py39/lxml-4.7.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
+            },
+            {
+                "module": "mixbox",
+                "input_file": "wheels/shared/mixbox-1.0.3-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ordered_set",
+                "input_file": "wheels/shared/ordered_set-3.1.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "parse",
+                "input_file": "wheels/py3/parse-1.17.0-py3-none-any.whl"
+            },
+            {
+                "module": "ply",
+                "input_file": "wheels/shared/ply-3.11-py2.py3-none-any.whl"
+            },
+            {
+                "module": "python_dateutil",
+                "input_file": "wheels/shared/python_dateutil-2.8.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "pytz",
+                "input_file": "wheels/shared/pytz-2021.3-py2.py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "six",
+                "input_file": "wheels/shared/six-1.14.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "sqlparse",
+                "input_file": "wheels/py3/sqlparse-0.4.2-py3-none-any.whl"
+            },
+            {
+                "module": "stix",
+                "input_file": "wheels/shared/stix-1.2.0.10-py2.py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.8-py2.py3-none-any.whl"
+            }
+        ]
+    }
 }
