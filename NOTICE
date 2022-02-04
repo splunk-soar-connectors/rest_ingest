@@ -4,14 +4,13 @@ Copyright (c) 2016-2022 Splunk Inc.
 Third-party Software Attributions:
 
 Library: Django
-Version: 3.2.5
+Version: 3.2.12
 License: BSD 3
-License: Python 2.0
 0.9.0 thru 1.2              1991-1995   CWI         yes
 1.3 thru 1.5.2  1.2         1995-1999   CNRI        yes
+2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation;
 Copyright 1991-1995 Stichting Mathematisch Centrum Amsterdam
 Copyright 2001 Python Software Foundation; All Rights Reserved
-Copyright 2012-2020 ,
 Copyright Django Software Foundation and individual contributors
 
 Library: cybox
@@ -30,7 +29,7 @@ License: Apache 2.0
 Copyright 2013 Kenneth Knowles
 
 Library: libtaxii
-Version: 1.1.114
+Version: 1.1.119
 License: BSD 3
 Copyright 2017 The MITRE Corporation
 

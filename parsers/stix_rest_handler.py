@@ -13,15 +13,16 @@
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
-import libtaxii as lt
-from stix.core import STIXPackage
-from collections import OrderedDict
-from jsonpath_rw import parse as jp_parse
-from six import string_types
-import uuid
-from copy import deepcopy
 import json
+import uuid
+from collections import OrderedDict
+from copy import deepcopy
+
+import libtaxii as lt
+from jsonpath_rw import parse as jp_parse
 from phantom_common.compat import StringIO
+from six import string_types
+from stix.core import STIXPackage
 
 # dictionary that contains the common keys in the container
 _container_common = {
