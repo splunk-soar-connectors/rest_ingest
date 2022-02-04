@@ -13,11 +13,12 @@
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
-from six import string_types
-import sys
-import json
 import email
+import json
+import sys
+
 from parse import parse
+from six import string_types
 
 ARTIFACT_LABEL_ALERT = "Alert"
 ARTIFACT_LABEL_ANALYSIS = "Analysis"

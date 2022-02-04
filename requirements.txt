@@ -1,6 +1,6 @@
-Django==3.2.5
 cybox==2.1.0.21
 decorator==4.4.2
+Django==3.2.5
 jsonpath_rw==1.4.0
 libtaxii==1.1.114
 mixbox==1.0.3

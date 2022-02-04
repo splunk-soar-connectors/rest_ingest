@@ -12,28 +12,25 @@
 # the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
-import json
+import base64
+import copy
 import imp
 import importlib
-import os
-import requests
-import copy
-from traceback import format_exc
+import json
 import logging
-import six
-import base64
+import os
 import re
+from traceback import format_exc
 
 import encryption_helper
-
-from django.http import Http404, HttpResponse
-
 # Phantom imports
 import phantom.app as phantom
+import requests
+import six
+from django.http import Http404, HttpResponse
 from phantom.app import BaseConnector
-from phantom_common.install_info import get_rest_base_url
 from phantom_common.compat import convert_to_unicode
-
+from phantom_common.install_info import get_rest_base_url
 
 logger = logging.getLogger(__name__)
 
@@ -58,7 +55,7 @@ def _get_creds_from_request(request):
     This function was copied, as is, from www/phantom_ui/ui/rest.py
     in order to avoid making platform changes during a patch.
 
-    TODO: the original function should be moved into pycommon and this app 
+    TODO: the original function should be moved into pycommon and this app
     should call that function
 
     Args:
