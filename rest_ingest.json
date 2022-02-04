@@ -44,7 +44,7 @@
         "wheel": [
             {
                 "module": "Django",
-                "input_file": "wheels/py3/Django-3.2.5-py3-none-any.whl"
+                "input_file": "wheels/py3/Django-3.2.12-py3-none-any.whl"
             },
             {
                 "module": "asgiref",
@@ -76,7 +76,7 @@
             },
             {
                 "module": "libtaxii",
-                "input_file": "wheels/shared/libtaxii-1.1.114-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/libtaxii-1.1.119-py2.py3-none-any.whl"
             },
             {
                 "module": "lxml",
@@ -137,7 +137,7 @@
         "wheel": [
             {
                 "module": "Django",
-                "input_file": "wheels/py3/Django-3.2.5-py3-none-any.whl"
+                "input_file": "wheels/py3/Django-3.2.12-py3-none-any.whl"
             },
             {
                 "module": "asgiref",
@@ -169,7 +169,7 @@
             },
             {
                 "module": "libtaxii",
-                "input_file": "wheels/shared/libtaxii-1.1.114-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/libtaxii-1.1.119-py2.py3-none-any.whl"
             },
             {
                 "module": "lxml",
