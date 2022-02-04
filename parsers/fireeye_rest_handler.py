@@ -267,4 +267,4 @@ if __name__ == '__main__':
         # import pprint;pprint.pprint(result)
         print(json.dumps(result))
 
-    exit(0)
+    sys.exit(0)
