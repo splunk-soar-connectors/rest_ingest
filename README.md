@@ -2,11 +2,11 @@
 # REST Data Source
 
 Publisher: Splunk  
-Connector Version: 2\.0\.7  
+Connector Version: 2.0.7  
 Product Vendor: Generic  
 Product Name: REST Data Source  
-Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 5\.1\.0  
+Product Version Supported (regex): ".\*"  
+Minimum Product Version: 5.1.0  
 
 This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
 
@@ -93,5 +93,5 @@ The below configuration variables are required for this Connector to operate.  T
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
-**parse\_script** |  optional  | file | Custom Python REST handler
-**stock\_scripts** |  optional  | string | Preconfigured parsing scripts
+**parse_script** |  optional  | file | Custom Python REST handler
+**stock_scripts** |  optional  | string | Preconfigured parsing scripts
