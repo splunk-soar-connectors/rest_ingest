@@ -17,10 +17,10 @@ import json
 import uuid
 from collections import OrderedDict
 from copy import deepcopy
+from io import StringIO
 
 import libtaxii as lt
 from jsonpath_rw import parse as jp_parse
-from phantom_common.compat import StringIO
 from six import string_types
 from stix.core import STIXPackage
 

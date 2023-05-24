@@ -6,7 +6,7 @@
     "type": "generic",
     "publisher": "Splunk",
     "main_module": "rest_connector.py",
-    "app_version": "2.0.7",
+    "app_version": "2.0.8",
     "utctime_updated": "2022-02-04T02:58:47.000000Z",
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
@@ -128,7 +128,7 @@
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.15-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.16-py2.py3-none-any.whl"
             }
         ]
     },
@@ -141,7 +141,7 @@
             },
             {
                 "module": "asgiref",
-                "input_file": "wheels/py3/asgiref-3.6.0-py3-none-any.whl"
+                "input_file": "wheels/py3/asgiref-3.7.1-py3-none-any.whl"
             },
             {
                 "module": "certifi",
@@ -216,8 +216,12 @@
                 "input_file": "wheels/shared/stix-1.2.0.10-py2.py3-none-any.whl"
             },
             {
+                "module": "typing_extensions",
+                "input_file": "wheels/py3/typing_extensions-4.6.1-py3-none-any.whl"
+            },
+            {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.15-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.16-py2.py3-none-any.whl"
             }
         ]
     }
