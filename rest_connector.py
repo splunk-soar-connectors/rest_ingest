@@ -170,21 +170,21 @@ def handle_request(request, path_parts):
             return HttpResponse('Parse script returned an error "{0}"'.format(result), status=400)   # nosemgrep
 
         if not hasattr(result, '__iter__'):
-            return HttpResponse(
+            return HttpResponse(   # nosemgrep
                 'Parse script returned an invalid response of type "{}"'.format(
                     type(result)),
                 status=400
-            )   # nosemgrep
+            )
 
         messages = []
 
         for r in result:
             if not hasattr(r, 'get'):
-                return HttpResponse(
+                return HttpResponse(   # nosemgrep
                     'Parse script returned an invalid response containing a(n) "{}" object'.format(
                         type(r)),
                   status=400
-                )   # nosemgrep
+                )
 
             container = r.get('container')
             artifacts = r.get('artifacts')
@@ -211,10 +211,10 @@ def handle_request(request, path_parts):
 
                 container_id = response_json.get('id')
                 if not container_id:
-                    return HttpResponse(
+                    return HttpResponse(   # nosemgrep
                         'Unknown error when inserting container, no resulting container id. Response: {}'.format(
                             response_json),
-                        status=400)   # nosemgrep
+                        status=400)
 
                 response_json['document'] = 'container'
                 messages.append(response_json)
@@ -247,9 +247,9 @@ def handle_request(request, path_parts):
                         messages.append(response_json)
 
                     else:
-                        return HttpResponse(
+                        return HttpResponse(   # nosemgrep
                             'Unknown error when inserting artifact. Response: {}'.format(response_json),
-                            status=400)   # nosemgrep
+                            status=400)
 
         return JsonResponse({
             'success': True,
