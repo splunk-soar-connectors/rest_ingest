@@ -6,7 +6,7 @@
     "type": "generic",
     "publisher": "Splunk",
     "main_module": "rest_connector.py",
-    "app_version": "2.0.7",
+    "app_version": "2.0.8",
     "utctime_updated": "2022-02-04T02:58:47.000000Z",
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
@@ -14,7 +14,7 @@
     "min_phantom_version": "5.1.0",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
-    "license": "Copyright (c) 2016-2022 Splunk Inc.",
+    "license": "Copyright (c) 2016-2023 Splunk Inc.",
     "fips_compliant": true,
     "product_version_regex": ".*",
     "python_version": "3",
@@ -44,7 +44,7 @@
         "wheel": [
             {
                 "module": "Django",
-                "input_file": "wheels/py3/Django-3.2.12-py3-none-any.whl"
+                "input_file": "wheels/py3/Django-3.2.16-py3-none-any.whl"
             },
             {
                 "module": "asgiref",
@@ -52,7 +52,7 @@
             },
             {
                 "module": "certifi",
-                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
+                "input_file": "wheels/py3/certifi-2023.5.7-py3-none-any.whl"
             },
             {
                 "module": "chardet",
@@ -80,7 +80,7 @@
             },
             {
                 "module": "lxml",
-                "input_file": "wheels/py36/lxml-4.7.1-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
+                "input_file": "wheels/py36/lxml-4.9.2-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
             },
             {
                 "module": "mixbox",
@@ -104,7 +104,7 @@
             },
             {
                 "module": "pytz",
-                "input_file": "wheels/shared/pytz-2021.3-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/pytz-2023.3-py2.py3-none-any.whl"
             },
             {
                 "module": "requests",
@@ -116,7 +116,7 @@
             },
             {
                 "module": "sqlparse",
-                "input_file": "wheels/py3/sqlparse-0.4.2-py3-none-any.whl"
+                "input_file": "wheels/py3/sqlparse-0.4.4-py3-none-any.whl"
             },
             {
                 "module": "stix",
@@ -124,11 +124,11 @@
             },
             {
                 "module": "typing_extensions",
-                "input_file": "wheels/py3/typing_extensions-4.0.1-py3-none-any.whl"
+                "input_file": "wheels/py3/typing_extensions-4.1.1-py3-none-any.whl"
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.8-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.16-py2.py3-none-any.whl"
             }
         ]
     },
@@ -137,15 +137,15 @@
         "wheel": [
             {
                 "module": "Django",
-                "input_file": "wheels/py3/Django-3.2.12-py3-none-any.whl"
+                "input_file": "wheels/py3/Django-3.2.16-py3-none-any.whl"
             },
             {
                 "module": "asgiref",
-                "input_file": "wheels/py3/asgiref-3.5.0-py3-none-any.whl"
+                "input_file": "wheels/py3/asgiref-3.7.1-py3-none-any.whl"
             },
             {
                 "module": "certifi",
-                "input_file": "wheels/shared/certifi-2021.10.8-py2.py3-none-any.whl"
+                "input_file": "wheels/py3/certifi-2023.5.7-py3-none-any.whl"
             },
             {
                 "module": "chardet",
@@ -173,7 +173,7 @@
             },
             {
                 "module": "lxml",
-                "input_file": "wheels/py39/lxml-4.7.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
+                "input_file": "wheels/py39/lxml-4.9.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl"
             },
             {
                 "module": "mixbox",
@@ -197,7 +197,7 @@
             },
             {
                 "module": "pytz",
-                "input_file": "wheels/shared/pytz-2021.3-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/pytz-2023.3-py2.py3-none-any.whl"
             },
             {
                 "module": "requests",
@@ -209,7 +209,7 @@
             },
             {
                 "module": "sqlparse",
-                "input_file": "wheels/py3/sqlparse-0.4.2-py3-none-any.whl"
+                "input_file": "wheels/py3/sqlparse-0.4.4-py3-none-any.whl"
             },
             {
                 "module": "stix",
@@ -217,7 +217,7 @@
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.8-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.16-py2.py3-none-any.whl"
             }
         ]
     }

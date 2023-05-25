@@ -1,6 +1,6 @@
 # File: rest_connector.py
 #
-# Copyright (c) 2016-2022 Splunk Inc.
+# Copyright (c) 2016-2023 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import encryption_helper
 import phantom.app as phantom
 import requests
 import six
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from phantom.app import BaseConnector
 from phantom_common.compat import convert_to_unicode
 from phantom_common.install_info import get_rest_base_url
@@ -251,10 +251,10 @@ def handle_request(request, path_parts):
                             'Unknown error when inserting artifact. Response: {}'.format(response_json),
                             status=400)
 
-        return HttpResponse(json.dumps({
+        return JsonResponse({
             'success': True,
             'messages': messages
-        }))
+        })
 
     except Http404 as e:
         raise
@@ -267,7 +267,7 @@ def handle_request(request, path_parts):
             'message': convert_to_unicode(e),
             'stack': stack
         }
-        return HttpResponse(json.dumps(response), status=400)
+        return JsonResponse(response, status=400)
 
 
 class IngestConnector(BaseConnector):
