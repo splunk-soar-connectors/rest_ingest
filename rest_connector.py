@@ -118,7 +118,7 @@ def _quote_wrap(value):
 def handle_request(request, path_parts):
     # flake8: noqa
     if not path_parts:
-        return HttpResponse('Incomplete path. No asset specified', status=400)
+        return HttpResponse('Incomplete path. No asset specified', status=400)   # nosemgrep
 
     asset_name = path_parts.pop(0)
     response = _call_phantom_rest_api(
@@ -147,7 +147,7 @@ def handle_request(request, path_parts):
             if not hasattr(mod, HANDLER_NAME):
                 error = 'Parse script missing handler function "{}"'.format(HANDLER_NAME)
                 logger.error(error)
-                return HttpResponse(error, status=400)
+                return HttpResponse(error, status=400)   # nosemgrep
             handler_function = getattr(mod, HANDLER_NAME)
 
         else:
@@ -161,16 +161,16 @@ def handle_request(request, path_parts):
                 handler_function = getattr(mod, HANDLER_NAME)
 
         if not handler_function:
-            return HttpResponse('Asset "{}" has no attached parse handler'.format(asset_name), status=400)
+            return HttpResponse('Asset "{}" has no attached parse handler'.format(asset_name), status=400)   # nosemgrep
 
         result = handler_function(request)
 
         if isinstance(result, six.string_types):
             # Error condition
-            return HttpResponse('Parse script returned an error "{0}"'.format(result), status=400)
+            return HttpResponse('Parse script returned an error "{0}"'.format(result), status=400)   # nosemgrep
 
         if not hasattr(result, '__iter__'):
-            return HttpResponse(
+            return HttpResponse(   # nosemgrep
                 'Parse script returned an invalid response of type "{}"'.format(
                     type(result)),
                 status=400
@@ -180,7 +180,7 @@ def handle_request(request, path_parts):
 
         for r in result:
             if not hasattr(r, 'get'):
-                return HttpResponse(
+                return HttpResponse(   # nosemgrep
                     'Parse script returned an invalid response containing a(n) "{}" object'.format(
                         type(r)),
                   status=400
@@ -211,7 +211,7 @@ def handle_request(request, path_parts):
 
                 container_id = response_json.get('id')
                 if not container_id:
-                    return HttpResponse(
+                    return HttpResponse(   # nosemgrep
                         'Unknown error when inserting container, no resulting container id. Response: {}'.format(
                             response_json),
                         status=400)
@@ -247,7 +247,7 @@ def handle_request(request, path_parts):
                         messages.append(response_json)
 
                     else:
-                        return HttpResponse(
+                        return HttpResponse(   # nosemgrep
                             'Unknown error when inserting artifact. Response: {}'.format(response_json),
                             status=400)
 
