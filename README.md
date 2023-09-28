@@ -2,7 +2,7 @@
 # REST Data Source
 
 Publisher: Splunk  
-Connector Version: 2.0.8  
+Connector Version: 2.0.9  
 Product Vendor: Generic  
 Product Name: REST Data Source  
 Product Version Supported (regex): ".\*"  
