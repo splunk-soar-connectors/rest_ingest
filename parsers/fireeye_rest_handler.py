@@ -200,7 +200,7 @@ def parse_alert(alert, result):
     if cnc_services:
         cnc_service = cnc_services.get("cnc-service")
         if cnc_service:
-            if type(cnc_service) == dict:
+            if isinstance(cnc_service, dict):
                 cnc_services_list = []
                 cnc_services_list.append(cnc_service)
                 cnc_service = cnc_services_list
@@ -245,7 +245,7 @@ def parse_json(input_json):
 
     _artifact_common["deviceHostname"] = source_device_name
 
-    if type(alerts) == dict:
+    if isinstance(alerts, dict):
         alerts_list = []
         alerts_list.append(alerts)
         alerts = alerts_list
