@@ -76,7 +76,7 @@ def handle_request(f):
         cstrio.seek(0)
         package = parse_stix(cstrio)
 
-        if type(package) == str:
+        if isinstance(package, str):
             # Error
             return package
 
@@ -95,7 +95,7 @@ def handle_request(f):
 # -------- Stix -------
 
 
-get_list = lambda x: x if type(x) is list else [x]
+get_list = lambda x: x if isinstance(x, list) else [x]
 
 
 def parse_domain_obj_type(prop, obs_json):
@@ -114,7 +114,7 @@ def parse_domain_obj_type(prop, obs_json):
         artifact["cef"] = cef
         # append to the properties
         obs_json["properties"].append(artifact)
-    elif type(value) == dict:
+    elif isinstance(value, dict):
         if "value" in value:
             value = value["value"]
             value = get_list(value)  # convert to list, removes requirement for if else
@@ -160,7 +160,7 @@ def parse_hash_object(file_hash, obs_json, file_name=None, file_size=None, file_
         # append to the properties
         obs_json["properties"].append(artifact)
         return True
-    elif type(hash_value) == dict:
+    elif isinstance(hash_value, dict):
         if "value" in hash_value:
             value = hash_value["value"]
             value = get_list(value)  # convert to list, removes requirement for if else
@@ -185,7 +185,7 @@ def parse_hash_object(file_hash, obs_json, file_name=None, file_size=None, file_
 
 
 def parse_file_name_obj(file_name, prop):
-    if type(file_name) == dict:
+    if isinstance(file_name, dict):
         value = file_name.get("value")
         if not value:
             return None
@@ -200,7 +200,7 @@ def parse_file_name_obj(file_name, prop):
 
 
 def parse_file_path_obj(file_path, prop):
-    if type(file_path) == dict:
+    if isinstance(file_path, dict):
         value = file_path.get("value")
         if not value:
             return None
@@ -382,7 +382,7 @@ def parse_port_obj_type(prop, obs_json):
         # append to the properties
         obs_json["properties"].append(artifact)
 
-    elif type(port_value) == dict:
+    elif isinstance(port_value, dict):
         condition = port_value.get("condition")
         if condition is None:
             return
@@ -429,7 +429,7 @@ def parse_address_obj_type(prop, obs_json):
         # append to the properties
         obs_json["properties"].append(artifact)
 
-    elif type(addr_value) == dict:
+    elif isinstance(addr_value, dict):
         condition = addr_value.get("condition")
         if condition is None:
             return
@@ -474,7 +474,7 @@ def parse_common_obj_type(prop, obs_json, key_name, cef_key, artifact_name):
         artifacts.append(artifact)
         obs_json["properties"].append(artifact)
 
-    elif type(addr_value) == dict:
+    elif isinstance(addr_value, dict):
         condition = addr_value.get("condition")
         if condition is None:
             return None
