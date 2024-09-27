@@ -40,5 +40,85 @@
             ]
         }
     },
-    "actions": []
+    "actions": [],
+    "pip_dependencies": {
+        "wheel": [
+            {
+                "module": "cybox",
+                "input_file": "wheels/shared/cybox-2.1.0.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "decorator",
+                "input_file": "wheels/shared/decorator-4.4.2-py2.py3-none-any.whl"
+            },
+            {
+                "module": "jsonpath_rw",
+                "input_file": "wheels/py3/jsonpath_rw-1.4.0-py3-none-any.whl"
+            },
+            {
+                "module": "libtaxii",
+                "input_file": "wheels/shared/libtaxii-1.1.119-py2.py3-none-any.whl"
+            },
+            {
+                "module": "lxml",
+                "input_file": "wheels/py36/lxml-5.3.0-cp36-cp36m-manylinux_2_28_x86_64.whl"
+            },
+            {
+                "module": "mixbox",
+                "input_file": "wheels/shared/mixbox-1.0.3-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ordered_set",
+                "input_file": "wheels/shared/ordered_set-3.1.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ply",
+                "input_file": "wheels/shared/ply-3.11-py2.py3-none-any.whl"
+            },
+            {
+                "module": "stix",
+                "input_file": "wheels/shared/stix-1.2.0.10-py2.py3-none-any.whl"
+            }
+        ]
+    },
+    "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "cybox",
+                "input_file": "wheels/shared/cybox-2.1.0.21-py2.py3-none-any.whl"
+            },
+            {
+                "module": "decorator",
+                "input_file": "wheels/shared/decorator-4.4.2-py2.py3-none-any.whl"
+            },
+            {
+                "module": "jsonpath_rw",
+                "input_file": "wheels/py3/jsonpath_rw-1.4.0-py3-none-any.whl"
+            },
+            {
+                "module": "libtaxii",
+                "input_file": "wheels/shared/libtaxii-1.1.119-py2.py3-none-any.whl"
+            },
+            {
+                "module": "lxml",
+                "input_file": "wheels/py39/lxml-5.3.0-cp39-cp39-manylinux_2_28_x86_64.whl"
+            },
+            {
+                "module": "mixbox",
+                "input_file": "wheels/shared/mixbox-1.0.3-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ordered_set",
+                "input_file": "wheels/shared/ordered_set-3.1.1-py2.py3-none-any.whl"
+            },
+            {
+                "module": "ply",
+                "input_file": "wheels/shared/ply-3.11-py2.py3-none-any.whl"
+            },
+            {
+                "module": "stix",
+                "input_file": "wheels/shared/stix-1.2.0.10-py2.py3-none-any.whl"
+            }
+        ]
+    }
 }
