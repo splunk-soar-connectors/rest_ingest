@@ -6,7 +6,7 @@ Connector Version: 2.0.9
 Product Vendor: Generic  
 Product Name: REST Data Source  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 5.1.0  
+Minimum Product Version: 6.2.1  
 
 This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
 
