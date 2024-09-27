@@ -2,16 +2,16 @@
 # REST Data Source
 
 Publisher: Splunk  
-Connector Version: 2.0.9  
+Connector Version: 2.0.10  
 Product Vendor: Generic  
 Product Name: REST Data Source  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 5.1.0  
+Minimum Product Version: 6.2.1  
 
 This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
 
 [comment]: # " File: README.md"
-[comment]: # "  Copyright (c) 2016-2023 Splunk Inc."
+[comment]: # "  Copyright (c) 2016-2024 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."

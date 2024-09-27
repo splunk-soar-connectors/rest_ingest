@@ -26,12 +26,12 @@ ARTIFACT_LABEL_ANALYSIS = "Analysis"
 # dictionary that contains the comman keys in the container
 _container_common = {
     "description": "Container added by Phantom",
-    "run_automation": False  # Don't run any playbooks, when this container is added
+    "run_automation": False,  # Don't run any playbooks, when this container is added
 }
 _artifact_common = {
     "type": "network",
     "description": "Artifact added by Phantom",
-    "run_automation": False  # Don't run any playbooks, when this artifact is added
+    "run_automation": False,  # Don't run any playbooks, when this artifact is added
 }
 
 
@@ -52,7 +52,7 @@ def _set_cef_key(src_dict, src_key, dst_dict, dst_key):
 
     # if None, try again after removing the @ char
     if src_value is None:
-        if src_key.startswith('@'):
+        if src_key.startswith("@"):
             return _set_cef_key(src_dict, src_key[1:], dst_dict, dst_key)
         return False
 
@@ -63,21 +63,21 @@ def _set_cef_key(src_dict, src_key, dst_dict, dst_key):
 
 def set_url(http_header, cef):
     # get the request line
-    request, header_str = http_header.split('\r\n', 1)
+    request, header_str = http_header.split("\r\n", 1)
     headers = email.message_from_string(header_str)
 
     # Remove multiple spaces if any. always happens in http request line
-    request = ' '.join(request.split())
+    request = " ".join(request.split())
 
     url = request.split()[1]
 
     if url:
-        host = headers.get('Host')
-        if url.startswith('http') is False:
+        host = headers.get("Host")
+        if url.startswith("http") is False:
             if host:
-                url = 'http://{0}{1}'.format(host, url)
+                url = "http://{0}{1}".format(host, url)
 
-        cef['requestURL'] = url
+        cef["requestURL"] = url
 
     return
 
@@ -103,104 +103,104 @@ def parse_alert(alert, result):
 
     # Create the container, each alert represents a container
     container = dict()
-    new_data['container'] = container
+    new_data["container"] = container
     container.update(_container_common)
-    container['name'] = alert.get('@name', alert.get('name'))
+    container["name"] = alert.get("@name", alert.get("name"))
 
-    if '@id' not in alert:
-        if 'id' not in alert:
-            raise TypeError('id key not found in alert')
+    if "@id" not in alert:
+        if "id" not in alert:
+            raise TypeError("id key not found in alert")
 
-    container['source_data_identifier'] = alert.get('@id', alert.get('id'))
-    container['data'] = alert
+    container["source_data_identifier"] = alert.get("@id", alert.get("id"))
+    container["data"] = alert
 
-    start_time = alert.get('occurred')
+    start_time = alert.get("occurred")
     if start_time:
         start_time = parse_time(start_time)
-        container['start_time'] = start_time
+        container["start_time"] = start_time
 
-    severity = alert.get('@severity', alert.get('severity', 'medium'))
-    container['severity'] = 'high' if severity == 'crit' else 'medium'
+    severity = alert.get("@severity", alert.get("severity", "medium"))
+    container["severity"] = "high" if severity == "crit" else "medium"
 
     artifact_label = ARTIFACT_LABEL_ALERT
 
-    if container['name'] == 'malware-object':
+    if container["name"] == "malware-object":
         artifact_label = ARTIFACT_LABEL_ANALYSIS
 
     # now the artifacts
-    new_data['artifacts'] = artifacts = []
+    new_data["artifacts"] = artifacts = []
 
     artifact = dict()
     artifacts.append(artifact)
 
     artifact.update(_container_common)
     artifact.update(_artifact_common)
-    artifact['label'] = artifact_label
+    artifact["label"] = artifact_label
     artifact_id = len(artifacts)
-    artifact['name'] = "Artifact ID: {0}".format(artifact_id)
-    artifact['source_data_identifier'] = str(artifact_id)
+    artifact["name"] = "Artifact ID: {0}".format(artifact_id)
+    artifact["source_data_identifier"] = str(artifact_id)
 
-    start_time = alert.get('occurred')
+    start_time = alert.get("occurred")
     if start_time:
         start_time = parse_time(start_time)
-        container['start_time'] = start_time
+        container["start_time"] = start_time
 
-    artifact['cef'] = cef = dict()
+    artifact["cef"] = cef = dict()
 
-    dst = alert.get('dst')
+    dst = alert.get("dst")
     if dst:
-        _set_cef_key(dst, 'host', cef, 'destinationHostName')
-        _set_cef_key(dst, 'ip', cef, 'destinationAddress')
-        _set_cef_key(dst, 'port', cef, 'destinationPort')
-        _set_cef_key(dst, 'mac', cef, 'destinationMacAddress')
+        _set_cef_key(dst, "host", cef, "destinationHostName")
+        _set_cef_key(dst, "ip", cef, "destinationAddress")
+        _set_cef_key(dst, "port", cef, "destinationPort")
+        _set_cef_key(dst, "mac", cef, "destinationMacAddress")
 
-    src = alert.get('src')
+    src = alert.get("src")
     if src:
-        _set_cef_key(src, 'host', cef, 'sourceHostName')
-        _set_cef_key(src, 'ip', cef, 'sourceAddress')
-        _set_cef_key(src, 'port', cef, 'sourcePort')
-        _set_cef_key(src, 'mac', cef, 'sourceMacAddress')
+        _set_cef_key(src, "host", cef, "sourceHostName")
+        _set_cef_key(src, "ip", cef, "sourceAddress")
+        _set_cef_key(src, "port", cef, "sourcePort")
+        _set_cef_key(src, "mac", cef, "sourceMacAddress")
 
-    intf = alert.get('interface')
+    intf = alert.get("interface")
     if intf:
-        _set_cef_key(intf, 'interface', cef, 'deviceInboundInterface')
+        _set_cef_key(intf, "interface", cef, "deviceInboundInterface")
 
-    explanation = alert.get('explanation')
+    explanation = alert.get("explanation")
     if explanation:
-        _set_cef_key(explanation, '@protocol', cef, 'transportProtocol')
+        _set_cef_key(explanation, "@protocol", cef, "transportProtocol")
 
     # Artifact for malware-detected
-    mal_detected = explanation.get('malware-detected')
+    mal_detected = explanation.get("malware-detected")
     if mal_detected:
-        malware = mal_detected.get('malware')
+        malware = mal_detected.get("malware")
         if malware:
             artifact = dict()
             artifacts.append(artifact)
             artifact.update(_container_common)
             artifact.update(_artifact_common)
-            artifact['label'] = artifact_label
-            artifact['source_data_identifier'] = len(artifacts)
-            artifact['name'] = "Malware Detected "
-            artifact['cef'] = cef = dict()
-            cef['cs1Label'] = 'signatureName'
-            _set_cef_key(malware, '@name', cef, 'cs1')
-            cef['cs2Label'] = 'signatureId'
-            _set_cef_key(malware, '@sid', cef, 'cs2')
-            _set_cef_key(malware, 'application', cef, 'fileName')
-            _set_cef_key(malware, 'original', cef, 'filePath')
-            _set_cef_key(malware, 'md5sum', cef, 'fileHash')
-            _set_cef_key(malware, 'downloaded-at', cef, 'fileCreateTime')
-            cef['cs3Label'] = 'httpHeader'
-            _set_cef_key(malware, 'http-header', cef, 'cs3')
-            if 'http-header' in malware:
-                set_url(cef['cs3'], cef)
+            artifact["label"] = artifact_label
+            artifact["source_data_identifier"] = len(artifacts)
+            artifact["name"] = "Malware Detected "
+            artifact["cef"] = cef = dict()
+            cef["cs1Label"] = "signatureName"
+            _set_cef_key(malware, "@name", cef, "cs1")
+            cef["cs2Label"] = "signatureId"
+            _set_cef_key(malware, "@sid", cef, "cs2")
+            _set_cef_key(malware, "application", cef, "fileName")
+            _set_cef_key(malware, "original", cef, "filePath")
+            _set_cef_key(malware, "md5sum", cef, "fileHash")
+            _set_cef_key(malware, "downloaded-at", cef, "fileCreateTime")
+            cef["cs3Label"] = "httpHeader"
+            _set_cef_key(malware, "http-header", cef, "cs3")
+            if "http-header" in malware:
+                set_url(cef["cs3"], cef)
 
     # Artifact for cnc-services
-    cnc_services = explanation.get('cnc-services')
+    cnc_services = explanation.get("cnc-services")
     if cnc_services:
-        cnc_service = cnc_services.get('cnc-service')
+        cnc_service = cnc_services.get("cnc-service")
         if cnc_service:
-            if type(cnc_service) == dict:
+            if isinstance(cnc_service, dict):
                 cnc_services_list = []
                 cnc_services_list.append(cnc_service)
                 cnc_service = cnc_services_list
@@ -210,18 +210,18 @@ def parse_alert(alert, result):
                 artifacts.append(artifact)
                 artifact.update(_container_common)
                 artifact.update(_artifact_common)
-                artifact['label'] = artifact_label
-                artifact['source_data_identifier'] = len(artifacts)
-                artifact['name'] = "CNC Service # {0}".format(i)
-                artifact['cef'] = cef = dict()
-                _set_cef_key(service, '@port', cef, 'destinationPort')
-                _set_cef_key(service, '@protocol', cef, 'transportProtocol')
-                _set_cef_key(service, 'address', cef, 'destinationAddress')
-                cef['deviceDirection'] = 'out'
-                cef['cs1Label'] = 'channel'
-                _set_cef_key(service, 'channel', cef, 'cs1')
-                if 'channel' in service:
-                    sanitized_header = cef['cs1'].replace('::~~', '\r\n')
+                artifact["label"] = artifact_label
+                artifact["source_data_identifier"] = len(artifacts)
+                artifact["name"] = "CNC Service # {0}".format(i)
+                artifact["cef"] = cef = dict()
+                _set_cef_key(service, "@port", cef, "destinationPort")
+                _set_cef_key(service, "@protocol", cef, "transportProtocol")
+                _set_cef_key(service, "address", cef, "destinationAddress")
+                cef["deviceDirection"] = "out"
+                cef["cs1Label"] = "channel"
+                _set_cef_key(service, "channel", cef, "cs1")
+                if "channel" in service:
+                    sanitized_header = cef["cs1"].replace("::~~", "\r\n")
                     try:
                         set_url(sanitized_header, cef)
                     except:
@@ -237,15 +237,15 @@ def parse_json(input_json):
     try:
         fe_json = json.loads(input_json)
     except Exception as e:
-        return "Unable to parse input json file, possibly incorrect format. Parse Error: {0}".format(getattr(e, 'message', str(e)))
+        return "Unable to parse input json file, possibly incorrect format. Parse Error: {0}".format(getattr(e, "message", str(e)))
 
-    alerts = fe_json.get('alert')
+    alerts = fe_json.get("alert")
 
-    source_device_name = fe_json.get('@appliance', fe_json.get('appliance', ''))
+    source_device_name = fe_json.get("@appliance", fe_json.get("appliance", ""))
 
-    _artifact_common['deviceHostname'] = source_device_name
+    _artifact_common["deviceHostname"] = source_device_name
 
-    if type(alerts) == dict:
+    if isinstance(alerts, dict):
         alerts_list = []
         alerts_list.append(alerts)
         alerts = alerts_list
@@ -260,7 +260,7 @@ def handle_request(request):
     return parse_json(request.body)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     with open(sys.argv[1]) as f:
         result = parse_json(str(f.read()))
