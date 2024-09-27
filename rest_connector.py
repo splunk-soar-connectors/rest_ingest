@@ -23,8 +23,6 @@ import re
 from traceback import format_exc
 
 import encryption_helper
-
-# Phantom imports
 import phantom.app as phantom
 import requests
 import six
