@@ -2,16 +2,16 @@
 # REST Data Source
 
 Publisher: Splunk  
-Connector Version: 2.0.10  
+Connector Version: 2.0.11  
 Product Vendor: Generic  
 Product Name: REST Data Source  
 Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.2.1  
+Minimum Product Version: 6.3.0  
 
 This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
 
 [comment]: # " File: README.md"
-[comment]: # "  Copyright (c) 2016-2024 Splunk Inc."
+[comment]: # "  Copyright (c) 2016-2025 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
@@ -88,8 +88,8 @@ This app makes use of the Python libtaxii module, which is licensed under the BS
 (c) 2017, The MITRE Corporation.
 
 
-### Configuration Variables
-The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a REST Data Source asset in SOAR.
+### Configuration variables
+This table lists the configuration variables required to operate REST Data Source. These variables are specified when configuring a REST Data Source asset in Splunk SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
