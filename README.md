@@ -1,29 +1,13 @@
-[comment]: # "Auto-generated SOAR connector documentation"
 # REST Data Source
 
-Publisher: Splunk  
-Connector Version: 2.0.11  
-Product Vendor: Generic  
-Product Name: REST Data Source  
-Product Version Supported (regex): ".\*"  
-Minimum Product Version: 6.3.0  
+Publisher: Splunk \
+Connector Version: 2.0.11 \
+Product Vendor: Generic \
+Product Name: REST Data Source \
+Minimum Product Version: 6.3.0
 
 This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
 
-[comment]: # " File: README.md"
-[comment]: # "  Copyright (c) 2016-2025 Splunk Inc."
-[comment]: # ""
-[comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
-[comment]: # "you may not use this file except in compliance with the License."
-[comment]: # "You may obtain a copy of the License at"
-[comment]: # ""
-[comment]: # "    http://www.apache.org/licenses/LICENSE-2.0"
-[comment]: # ""
-[comment]: # "Unless required by applicable law or agreed to in writing, software distributed under"
-[comment]: # "the License is distributed on an 'AS IS' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,"
-[comment]: # "either express or implied. See the License for the specific language governing permissions"
-[comment]: # "and limitations under the License."
-[comment]: # ""
 This App is an Ingestion source. In the Phantom documentation, in the [Administration
 Manual](../admin/) under the [Data Sources](../admin/sources) section, you will find an explanation
 of how Ingest Apps works and how information is extracted from the ingested data. There is a general
@@ -87,11 +71,28 @@ License, Copyright 2017- Paul Ganssle
 This app makes use of the Python libtaxii module, which is licensed under the BSD License, Copyright
 (c) 2017, The MITRE Corporation.
 
-
 ### Configuration variables
+
 This table lists the configuration variables required to operate REST Data Source. These variables are specified when configuring a REST Data Source asset in Splunk SOAR.
 
 VARIABLE | REQUIRED | TYPE | DESCRIPTION
 -------- | -------- | ---- | -----------
-**parse_script** |  optional  | file | Custom Python REST handler
-**stock_scripts** |  optional  | string | Preconfigured parsing scripts
+**parse_script** | optional | file | Custom Python REST handler |
+**stock_scripts** | optional | string | Preconfigured parsing scripts |
+
+______________________________________________________________________
+
+Auto-generated Splunk SOAR Connector documentation.
+
+Copyright 2025 Splunk Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
