@@ -1,7 +1,7 @@
 # !/bin/env python
 # File: fireeye_rest_handler.py
 #
-# Copyright (c) 2016-2020 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import sys
 
 from parse import parse
 from six import string_types
+
 
 ARTIFACT_LABEL_ALERT = "Alert"
 ARTIFACT_LABEL_ANALYSIS = "Analysis"
@@ -75,7 +76,7 @@ def set_url(http_header, cef):
         host = headers.get("Host")
         if url.startswith("http") is False:
             if host:
-                url = "http://{0}{1}".format(host, url)
+                url = f"http://{host}{url}"
 
         cef["requestURL"] = url
 
@@ -137,7 +138,7 @@ def parse_alert(alert, result):
     artifact.update(_artifact_common)
     artifact["label"] = artifact_label
     artifact_id = len(artifacts)
-    artifact["name"] = "Artifact ID: {0}".format(artifact_id)
+    artifact["name"] = f"Artifact ID: {artifact_id}"
     artifact["source_data_identifier"] = str(artifact_id)
 
     start_time = alert.get("occurred")
@@ -212,7 +213,7 @@ def parse_alert(alert, result):
                 artifact.update(_artifact_common)
                 artifact["label"] = artifact_label
                 artifact["source_data_identifier"] = len(artifacts)
-                artifact["name"] = "CNC Service # {0}".format(i)
+                artifact["name"] = f"CNC Service # {i}"
                 artifact["cef"] = cef = dict()
                 _set_cef_key(service, "@port", cef, "destinationPort")
                 _set_cef_key(service, "@protocol", cef, "transportProtocol")
@@ -237,7 +238,7 @@ def parse_json(input_json):
     try:
         fe_json = json.loads(input_json)
     except Exception as e:
-        return "Unable to parse input json file, possibly incorrect format. Parse Error: {0}".format(getattr(e, "message", str(e)))
+        return "Unable to parse input json file, possibly incorrect format. Parse Error: {}".format(getattr(e, "message", str(e)))
 
     alerts = fe_json.get("alert")
 
@@ -261,7 +262,6 @@ def handle_request(request):
 
 
 if __name__ == "__main__":
-
     with open(sys.argv[1]) as f:
         result = parse_json(str(f.read()))
         # import pprint;pprint.pprint(result)

@@ -1,7 +1,7 @@
 # !/usr/bin/env python2.7
 # File: stix_rest_handler.py
 #
-# Copyright (c) 2016-2020 Splunk Inc.
+# Copyright (c) 2016-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ from phantom_common.compat import StringIO
 from six import string_types
 from stix.core import STIXPackage
 
+
 # dictionary that contains the common keys in the container
 _container_common = {
     "description": "Container added by Phantom",
@@ -40,7 +41,6 @@ def process_results(results):
     processed_results = []
 
     for i, result in enumerate(results):
-
         # container is a dictionary of a single container and artifacts
         if "container" not in result:
             continue
@@ -51,7 +51,6 @@ def process_results(results):
             continue
 
         for j, artifact in enumerate(result["artifacts"]):
-
             if "source_data_identifier" not in artifact:
                 artifact["source_data_identifier"] = j
 
@@ -192,7 +191,7 @@ def parse_file_name_obj(file_name, prop):
 
         condition = file_name.get("condition")
         if condition.lower() == "contains":
-            return "*{0}*".format(value)
+            return f"*{value}*"
         elif condition.lower() == "equals":
             return value
 
@@ -207,7 +206,7 @@ def parse_file_path_obj(file_path, prop):
 
         condition = file_path.get("condition")
         if condition.lower() == "contains":
-            return "*{0}*".format(value)
+            return f"*{value}*"
         elif condition.lower() == "equals":
             return value
 
@@ -291,7 +290,6 @@ def parse_win_reg_key_obj_type(prop, obs_json):
     values = prop.get("values")
 
     for value in values:
-
         if not value:
             continue
 
@@ -596,7 +594,7 @@ def parse_indicator(indicator, package):
     indicator_id = indicator.id_
 
     if not indicator_id:
-        indicator_id = "Phantom:Indicator-{0}".format(uuid.uuid4())
+        indicator_id = f"Phantom:Indicator-{uuid.uuid4()}"
 
     package["indicators"][indicator_id] = indicator_json
     indicator_dict = indicator.to_dict()
@@ -636,9 +634,9 @@ def parse_construct(construct, name, package):
     construct_id = construct.id_
 
     if not construct_id:
-        construct_id = "Phantom:{0}-{1}".format(name, uuid.uuid4())
+        construct_id = f"Phantom:{name}-{uuid.uuid4()}"
 
-    package["{0}s".format(name)][construct_id] = construct_json
+    package[f"{name}s"][construct_id] = construct_json
     construct_dict = construct.to_dict()
 
     construct_json["title"] = construct_dict.get("title")
@@ -674,7 +672,7 @@ def parse_ttp(ttp, package):
     ttp_id = ttp.id_
 
     if not ttp_id:
-        ttp_id = "Phantom:ttp-{0}".format(uuid.uuid4())
+        ttp_id = f"Phantom:ttp-{uuid.uuid4()}"
 
     package["ttps"][ttp_id] = ttp_json
     ttp_dict = ttp.to_dict()
@@ -710,7 +708,7 @@ def parse_report_observables(report, package):
     report_id = report.id_
 
     if not report_id:
-        report_id = "Phantom:report-{0}".format(uuid.uuid4())
+        report_id = f"Phantom:report-{uuid.uuid4()}"
 
     package["reports"][report_id] = report_json
     report_dict = report.to_dict()
@@ -748,7 +746,7 @@ def parse_observable(observable, package):
 
     obs_id = observable.get("id")
     if not obs_id:
-        obs_id = "Phantom:Observable-{0}".format(uuid.uuid4())
+        obs_id = f"Phantom:Observable-{uuid.uuid4()}"
 
     package["observables"][obs_id] = obs_json
 
@@ -821,7 +819,7 @@ def parse_stix(xml_file_object, base_connector=None):
     try:
         stix_pkg = STIXPackage.from_xml(xml_file_object)
     except Exception as e:
-        message = "Possibly invalid stix or taxii xml. Error: {0}".format(getattr(e, "message", str(e)))
+        message = "Possibly invalid stix or taxii xml. Error: {}".format(getattr(e, "message", str(e)))
         if base_connector:
             base_connector.debug_print(message)
         return message
@@ -829,7 +827,7 @@ def parse_stix(xml_file_object, base_connector=None):
     package = OrderedDict(package_base)
     package["id"] = stix_pkg.id_
     if not package["id"]:
-        package["id"] = "Phantom:Package-{0}".format(uuid.uuid4())
+        package["id"] = f"Phantom:Package-{uuid.uuid4()}"
 
     package["idref"] = stix_pkg.idref
     package["version"] = stix_pkg.version
@@ -926,7 +924,6 @@ def create_artifacts_from_construct(package, name, observables, artifacts):
         return
 
     for construct in constructs:
-
         construct_artifacts = []
         curr_construct = constructs[construct]
         if "observable_idrefs" not in curr_construct:
@@ -1015,12 +1012,12 @@ def parse_packages(packages, base_connector):
         base_connector.send_progress(" ")
 
     if base_connector:
-        base_connector.save_progress("Creating Containers and Artifacts from {0} packages".format(len(packages)))
+        base_connector.save_progress(f"Creating Containers and Artifacts from {len(packages)} packages")
 
     # Now look at each of the package
     for j, package in enumerate(packages):
         if base_connector:
-            base_connector.send_progress("Working on STIX Package # {0}".format(j))
+            base_connector.send_progress(f"Working on STIX Package # {j}")
         package_containers = create_container_from_package(package, all_observables, base_connector)
         if package_containers:
             containers.append(package_containers)
@@ -1045,9 +1042,8 @@ def parse_taxii_message(taxii_message, base_connector=None):
     packages = []
 
     for i, cb in enumerate(taxii_message.content_blocks):
-
         if base_connector:
-            base_connector.send_progress("Parsing Content Block # {0}".format(i))
+            base_connector.send_progress(f"Parsing Content Block # {i}")
 
         # Give it to the stix parser to create the containers and artifacts
         # This code is the only place where the stix parsing will be written

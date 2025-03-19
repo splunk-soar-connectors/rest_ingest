@@ -149,7 +149,6 @@ def handle_request(request, path_parts):
             handler_function = getattr(mod, HANDLER_NAME)
 
         else:
-
             parse_script = asset["configuration"].get("stock_scripts")
             logger.debug("Using stock script: {}".format(parse_script))
             if parse_script in CANNED_SCRIPTS:
@@ -250,7 +249,6 @@ def handle_request(request, path_parts):
 
 
 class IngestConnector(BaseConnector):
-
     def __init__(self):
         # Call the BaseConnectors init first
         super(IngestConnector, self).__init__()
