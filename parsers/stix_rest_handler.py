@@ -17,11 +17,10 @@ import json
 import uuid
 from collections import OrderedDict
 from copy import deepcopy
+from io import StringIO
 
 import libtaxii as lt
 from jsonpath_rw import parse as jp_parse
-from phantom_common.compat import StringIO
-from six import string_types
 from stix.core import STIXPackage
 
 
@@ -103,7 +102,7 @@ def parse_domain_obj_type(prop, obs_json):
 
     value = prop["value"]
 
-    if isinstance(value, string_types):
+    if isinstance(value, str):
         cef = dict()
         artifact = dict()
         _set_cef_key(prop, "value", cef, "destinationDnsDomain")
@@ -141,7 +140,7 @@ def parse_hash_object(file_hash, obs_json, file_name=None, file_size=None, file_
 
     ret_val = False
 
-    if isinstance(hash_value, string_types):
+    if isinstance(hash_value, str):
         cef = dict()
         _set_cef_key(file_hash, "simple_hash_value", cef, "fileHash")
         if len(cef) == 0:
@@ -369,7 +368,7 @@ def parse_port_obj_type(prop, obs_json):
     if port_value is None:
         return
 
-    if isinstance(port_value, string_types):
+    if isinstance(port_value, str):
         artifact = dict()
         cef = dict()
         _set_cef_key(protocol_value, "value", cef, "transportProtocol")
@@ -417,7 +416,7 @@ def parse_address_obj_type(prop, obs_json):
     if addr_value is None:
         return
 
-    if isinstance(addr_value, string_types):
+    if isinstance(addr_value, str):
         artifact = dict()
         cef = dict()
         _set_cef_key(prop, "address_value", cef, "destinationAddress")
@@ -461,7 +460,7 @@ def parse_common_obj_type(prop, obs_json, key_name, cef_key, artifact_name):
 
     artifacts = []
 
-    if isinstance(addr_value, string_types):
+    if isinstance(addr_value, str):
         artifact = dict()
         cef = dict()
         _set_cef_key(prop, key_name, cef, cef_key)
@@ -868,7 +867,7 @@ def _get_value(in_dict, in_key, def_val=None, strip_it=True):
     if in_key not in in_dict:
         return def_val
 
-    if not isinstance(in_dict[in_key], string_types):
+    if not isinstance(in_dict[in_key], str):
         return in_dict[in_key]
 
     value = in_dict[in_key].strip() if strip_it else in_dict[in_key]

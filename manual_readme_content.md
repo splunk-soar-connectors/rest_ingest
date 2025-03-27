@@ -31,11 +31,6 @@ Copyright (c) 2005-2018, Michele Simionato.
 This app makes use of the Python stix module, which is licensed under the BSD License, Copyright (c)
 2017, The MITRE Corporation.
 
-## six
-
-This app makes use of the Python six module, which is licensed under the MIT License, Copyright (c)
-2010-2020 Benjamin Peterson
-
 ## mixbox
 
 This app makes use of the Python mixbox module, which is licensed under the BSD License, Copyright

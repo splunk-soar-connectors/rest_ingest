@@ -1,8 +1,4 @@
-cybox==2.1.0.21
-decorator==4.4.2
 jsonpath_rw==1.4.0
 libtaxii==1.1.119
-mixbox==1.0.3
-ordered_set==3.1.1
-ply==3.11
+parse==1.20.2
 stix==1.2.0.10
