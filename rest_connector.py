@@ -25,10 +25,8 @@ from traceback import format_exc
 import encryption_helper
 import phantom.app as phantom
 import requests
-import six
 from django.http import Http404, HttpResponse, JsonResponse
 from phantom.app import BaseConnector
-from phantom_common.compat import convert_to_unicode
 from phantom_common.install_info import get_rest_base_url
 
 logger = logging.getLogger(__name__)
@@ -154,7 +152,7 @@ def handle_request(request, path_parts):
             if parse_script in CANNED_SCRIPTS:
                 # get the directory of the file
                 path = CANNED_SCRIPTS[parse_script]
-                mod = __import__(path, globals(), locals(), [HANDLER_NAME], -1 if six.PY2 else 0)
+                mod = __import__(path, globals(), locals(), [HANDLER_NAME], 0)
                 handler_function = getattr(mod, HANDLER_NAME)
 
         if not handler_function:
@@ -162,7 +160,7 @@ def handle_request(request, path_parts):
 
         result = handler_function(request)
 
-        if isinstance(result, six.string_types):
+        if isinstance(result, str):
             # Error condition
             return HttpResponse('Parse script returned an error "{0}"'.format(result), status=400)  # nosemgrep
 
@@ -244,7 +242,7 @@ def handle_request(request, path_parts):
     except Exception as e:
         logger.error(e, exc_info=True)
         stack = format_exc()
-        response = {"failed": True, "message": convert_to_unicode(e), "stack": stack}
+        response = {"failed": True, "message": str(e), "stack": stack}
         return JsonResponse(response, status=400)
 
 

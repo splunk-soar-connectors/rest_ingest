@@ -18,7 +18,6 @@ import json
 import sys
 
 from parse import parse
-from six import string_types
 
 
 ARTIFACT_LABEL_ALERT = "Alert"
@@ -40,7 +39,7 @@ def _get_value(in_dict, in_key, def_val=None, strip_it=True):
     if in_key not in in_dict:
         return def_val
 
-    if not isinstance(in_dict[in_key], string_types):
+    if not isinstance(in_dict[in_key], str):
         return in_dict[in_key]
 
     value = in_dict[in_key].strip() if strip_it else in_dict[in_key]
