@@ -1,7 +1,7 @@
 # REST Data Source
 
 Publisher: Splunk \
-Connector Version: 2.0.11 \
+Connector Version: 2.0.12 \
 Product Vendor: Generic \
 Product Name: REST Data Source \
 Minimum Product Version: 6.3.0
