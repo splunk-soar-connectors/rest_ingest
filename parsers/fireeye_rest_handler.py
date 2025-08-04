@@ -97,7 +97,7 @@ def parse_time(input_time):
     return input_time
 
 
-def parse_alert(alert, result):
+def parse_alert(alert, result, artifact_common):
     new_data = {}
     result.append(new_data)
 
@@ -134,7 +134,7 @@ def parse_alert(alert, result):
     artifacts.append(artifact)
 
     artifact.update(_container_common)
-    artifact.update(_artifact_common)
+    artifact.update(artifact_common)
     artifact["label"] = artifact_label
     artifact_id = len(artifacts)
     artifact["name"] = f"Artifact ID: {artifact_id}"
@@ -177,7 +177,7 @@ def parse_alert(alert, result):
             artifact = dict()
             artifacts.append(artifact)
             artifact.update(_container_common)
-            artifact.update(_artifact_common)
+            artifact.update(artifact_common)
             artifact["label"] = artifact_label
             artifact["source_data_identifier"] = len(artifacts)
             artifact["name"] = "Malware Detected "
@@ -209,7 +209,7 @@ def parse_alert(alert, result):
                 artifact = dict()
                 artifacts.append(artifact)
                 artifact.update(_container_common)
-                artifact.update(_artifact_common)
+                artifact.update(artifact_common)
                 artifact["label"] = artifact_label
                 artifact["source_data_identifier"] = len(artifacts)
                 artifact["name"] = f"CNC Service # {i}"
@@ -243,7 +243,9 @@ def parse_json(input_json):
 
     source_device_name = fe_json.get("@appliance", fe_json.get("appliance", ""))
 
-    _artifact_common["deviceHostname"] = source_device_name
+    # Create copy to avoid modifying global variable
+    artifact_common = _artifact_common.copy()
+    artifact_common["deviceHostname"] = source_device_name
 
     if isinstance(alerts, dict):
         alerts_list = []
@@ -251,7 +253,7 @@ def parse_json(input_json):
         alerts = alerts_list
 
     for alert in alerts:
-        parse_alert(alert, result)
+        parse_alert(alert, result, artifact_common)
 
     return result
 
