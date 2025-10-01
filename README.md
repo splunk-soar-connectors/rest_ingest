@@ -1,9 +1,9 @@
 # REST Data Source
 
-Publisher: Splunk \
-Connector Version: 2.0.11 \
-Product Vendor: Generic \
-Product Name: REST Data Source \
+Publisher: Splunk <br>
+Connector Version: 2.0.12 <br>
+Product Vendor: Generic <br>
+Product Name: REST Data Source <br>
 Minimum Product Version: 6.3.0
 
 This app implements custom REST handlers for external implementations to push ingest data such as events and artifacts into Phantom
