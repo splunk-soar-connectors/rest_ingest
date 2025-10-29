@@ -14,8 +14,7 @@
 # and limitations under the License.
 import base64
 import copy
-import imp
-import importlib
+import importlib.util
 import json
 import logging
 import os
@@ -136,9 +135,8 @@ def handle_request(request, path_parts):
         handler_function = None
         if parse_script:
             logger.debug("Trying to exec custom script")
-            # TODO: imp is deprecated since python 3.4. Switch to importlib.util.spec_from_loader /
-            # TODO: importlib.util.module_from_spec, after dropping py2 support.
-            mod = imp.new_module(MODULE_NAME)
+            spec = importlib.util.spec_from_loader(MODULE_NAME, loader=None)
+            mod = importlib.util.module_from_spec(spec)
             exec(parse_script, mod.__dict__)
             if not hasattr(mod, HANDLER_NAME):
                 error = 'Parse script missing handler function "{}"'.format(HANDLER_NAME)
