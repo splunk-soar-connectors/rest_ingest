@@ -20,7 +20,7 @@ from copy import deepcopy
 from io import StringIO
 
 import libtaxii as lt
-from jsonpath_rw import parse as jp_parse
+from jsonpath_ng import parse as jp_parse
 from stix.core import STIXPackage
 
 

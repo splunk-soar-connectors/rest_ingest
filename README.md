@@ -16,10 +16,10 @@ explanation in Overview, and some individuals Apps have their own sections.
 A video explaining the configuration of a REST Asset for ingestion can be found on the Phantom
 portal at [this link](https://my.phantom.us/video/4)
 
-## jsonpath_rw
+## jsonpath-ng
 
-This app makes use of the Python jsonpath_rw module, which is licensed under the Apache 2.0 License,
-Copyright 2013- Kenneth Knowles
+This app makes use of the Python jsonpath-ng module, which is licensed under the Apache 2.0 License,
+Copyright 2014- h2non
 
 ## weakrefmethod
 
