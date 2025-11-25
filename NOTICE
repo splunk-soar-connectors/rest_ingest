@@ -1,83 +1,78 @@
-Splunk SOAR REST Data Source
+Splunk SOAR App: REST Data Source
 Copyright (c) 2016-2025 Splunk Inc.
+Third Party Software Attributions:
 
-Third-party Software Attributions:
+@@@@============================================================================
 
-Library: Django
-Version: 3.2.12
-License: BSD 3
-0.9.0 thru 1.2              1991-1995   CWI         yes
-1.3 thru 1.5.2  1.2         1995-1999   CNRI        yes
-2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation;
-Copyright 1991-1995 Stichting Mathematisch Centrum Amsterdam
-Copyright 2001 Python Software Foundation; All Rights Reserved
-Copyright Django Software Foundation and individual contributors
+Library: jsonpath-rw - 1.4.0
+Homepage: https://github.com/kennknowles/python-jsonpath-rw
+License: Apache Software License
+License Text:
 
-Library: cybox
-Version: 2.1.0.21
-License: BSD 3
-Copyright 2015 The MITRE Corporation
+Please navigate to https://github.com/kennknowles/python-jsonpath-rw to obtain a copy of the license.
 
-Library: decorator
-Version: 4.4.2
-License: BSD 3
-Copyright 2005-2018 Michele Simionato
+@@@@============================================================================
 
-Library: jsonpath-rw
-Version: 1.4.0
-License: Apache 2.0
-Copyright 2013 Kenneth Knowles
+Library: libtaxii - 1.1.119
+Homepage: https://taxiiproject.github.io/
+License: BSD License
+License Text:
 
-Library: libtaxii
-Version: 1.1.119
-License: BSD 3
-Copyright 2017 The MITRE Corporation
+Copyright (c) 2017, The MITRE Corporation
+All rights reserved.
 
-Library: mixbox
-Version: 1.0.3
-License: BSD
-The MITRE Corporation
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of The MITRE Corporation nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
 
-Library: ordered-set
-Version: 3.1.1
-License: MIT
-Copyright 2018 Luminoso Technologies, Inc
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Library: parse
-Version: 1.17.0
-License: MIT
-Copyright 2012-2019 Richard Jones <richard@python.org>
-Copyright 2012-2020 Richard Jones <richard@python.org>
-Copyright 2012-2020 Richard Jones <richard@python.org>
 
-Library: ply
-Version: 3.11
-License: BSD
-Unknown copyright
+@@@@============================================================================
 
-Library: python-dateutil
-Version: 2.8.1
-License: Apache 2.0
-License: BSD 3
-Copyright 2003-2011 - Gustavo Niemeyer <gustavo@niemeyer.net>
-Copyright 2012-2014 - Tomi Pieviläinen <tomi.pievilainen@iki.fi>
-Copyright 2014-2016 - Yaron de Leeuw <me@jarondl.net>
-Copyright 2015 - Paul Ganssle <paul@ganssle.io>
-Copyright 2015 - dateutil contributors (see AUTHORS file)
-Copyright 2017 Paul Ganssle <paul@ganssle.io>
-Copyright 2017 dateutil contributors (see AUTHORS file)
+Library: stix - 1.2.0.10
+Homepage: https://stixproject.github.io/
+License: BSD License
+License Text:
 
-Library: requests
-Version: 2.25.0
-License: Apache 2.0
-Kenneth Reitz
+Copyright (c) 2017, The MITRE Corporation
+All rights reserved.
 
-Library: six
-Version: 1.14.0
-License: MIT
-Copyright 2010-2020 Benjamin Peterson
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of The MITRE Corporation nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
 
-Library: stix
-Version: 1.2.0.10
-License: BSD 3
-Copyright 2017 The MITRE Corporation
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
