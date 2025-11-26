@@ -14,11 +14,12 @@
 # and limitations under the License.
 import base64
 import copy
-import importlib.util
+import importlib
 import json
 import logging
 import os
 import re
+import types
 from traceback import format_exc
 
 import encryption_helper
@@ -135,8 +136,7 @@ def handle_request(request, path_parts):
         handler_function = None
         if parse_script:
             logger.debug("Trying to exec custom script")
-            spec = importlib.util.spec_from_loader(MODULE_NAME, loader=None)
-            mod = importlib.util.module_from_spec(spec)
+            mod = types.ModuleType(MODULE_NAME)
             exec(parse_script, mod.__dict__)
             if not hasattr(mod, HANDLER_NAME):
                 error = 'Parse script missing handler function "{}"'.format(HANDLER_NAME)

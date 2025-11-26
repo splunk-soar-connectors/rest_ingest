@@ -1,4 +1,3 @@
-jsonpath_rw==1.4.0
-libtaxii==1.1.119
-parse==1.20.2
-stix==1.2.0.10
+jsonpath-ng==1.7.0
+libtaxii @ git+https://github.com/phantomcyber/libtaxii.git@python313-fix
+stix @ git+https://github.com/phantomcyber/python-stix.git@python313-fix
