@@ -1,2 +1,1 @@
 **Unreleased**
-* replace outdated phantom references with current Splunk SOAR link. 
