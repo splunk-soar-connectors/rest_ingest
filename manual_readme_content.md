@@ -1,10 +1,13 @@
-This App is an Ingestion source. In the Phantom documentation, in the [Administration
-Manual](../admin/) under the [Data Sources](../admin/sources) section, you will find an explanation
-of how Ingest Apps works and how information is extracted from the ingested data. There is a general
-explanation in Overview, and some individuals Apps have their own sections.
+This app is a data ingestion source for Splunk SOAR. Unlike typical SOAR apps that perform actions (like blocking IPs or quarantining endpoints), this app allows external systems to push security event data into SOAR in real-time via REST endpoints.
 
-A video explaining the configuration of a REST Asset for ingestion can be found on the Phantom
-portal at [this link](https://my.phantom.us/video/4)
+When data is received, the app parses it into SOAR containers (security events) and artifacts (observables like IPs, file hashes, domains). These containers and artifacts can then trigger automated playbooks and response workflows in SOAR.
+
+This app supports two parsing options:
+
+- **Stock Scripts**: Pre-built parsers for STIX 1.2 and FireEye alert formats
+- **Custom Scripts**: Upload your own Python script to parse any data format
+
+For details on writing custom parser scripts for this app, see [Using custom scripts with the Splunk SOAR REST API](https://help.splunk.com/en/splunk-soar/soar-cloud/rest-api-reference/using-the-splunk-soar-rest-api/use-a-custom-script)
 
 ## jsonpath_rw
 
