@@ -18,10 +18,8 @@ import importlib.util
 import json
 import logging
 import os
-import re
 from traceback import format_exc
 
-import encryption_helper
 import phantom.app as phantom
 import requests
 from django.http import Http404, HttpResponse, JsonResponse
@@ -67,14 +65,6 @@ def _get_creds_from_request(request):
 
     if http_auth.startswith(prefix):
         creds = base64.b64decode(http_auth[len(prefix) :]).decode()  # decode and convert to a string
-
-        # The basic auth header should be encrypted if it starts with enc_ and ends with _enc
-
-        enc_creds = re.match(r"^enc_(.+)_enc$", creds)
-        if enc_creds:
-            enc_creds = enc_creds.group(1)
-            # Encrypted basic auth headers prepend an 8 char salt
-            creds = encryption_helper.decrypt(enc_creds[8:], enc_creds[:8])
 
         # Raises a ValueError if basic auth holds a token
         try:

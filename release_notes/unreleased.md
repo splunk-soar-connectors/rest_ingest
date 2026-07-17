@@ -1,3 +1,3 @@
 **Unreleased**
 
-* Updated development tooling. (PAPP-38031)
+* Removed obsolete encrypted credential envelope handling. (PAPP-38031)
