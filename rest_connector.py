@@ -18,7 +18,6 @@ import importlib.util
 import json
 import logging
 import os
-from traceback import format_exc
 
 import phantom.app as phantom
 import requests
@@ -229,8 +228,7 @@ def handle_request(request, path_parts):
 
     except Exception as e:
         logger.error(e, exc_info=True)
-        stack = format_exc()
-        response = {"failed": True, "message": str(e), "stack": stack}
+        response = {"failed": True, "message": str(e)}
         return JsonResponse(response, status=400)
 
 
