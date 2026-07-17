@@ -14,6 +14,7 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 import json
+import logging
 import uuid
 from collections import OrderedDict
 from copy import deepcopy
@@ -22,6 +23,9 @@ from io import StringIO
 import libtaxii as lt
 from jsonpath_rw import parse as jp_parse
 from stix.core import STIXPackage
+
+
+logger = logging.getLogger(__name__)
 
 
 # dictionary that contains the common keys in the container
@@ -188,7 +192,7 @@ def parse_file_name_obj(file_name, prop):
         if not value:
             return None
 
-        condition = file_name.get("condition")
+        condition = file_name.get("condition") or "equals"
         if condition.lower() == "contains":
             return f"*{value}*"
         elif condition.lower() == "equals":
@@ -203,7 +207,7 @@ def parse_file_path_obj(file_path, prop):
         if not value:
             return None
 
-        condition = file_path.get("condition")
+        condition = file_path.get("condition") or "equals"
         if condition.lower() == "contains":
             return f"*{value}*"
         elif condition.lower() == "equals":
@@ -286,10 +290,10 @@ def parse_win_reg_key_obj_type(prop, obs_json):
     if key:
         _set_cef_key(key, "value", cef, "cs2", "cs2Label", "key")
 
-    values = prop.get("values")
+    values = get_list(prop.get("values") or [])
 
     for value in values:
-        if not value:
+        if not isinstance(value, dict):
             continue
 
         name = value.get("name")
@@ -332,7 +336,7 @@ def parse_file_obj_type(prop, obs_json):
 
     if hashes:
         for curr_hash in hashes:
-            hash_added |= parse_hash_object(curr_hash, obs_json, file_name, file_size, file_path)
+            hash_added |= bool(parse_hash_object(curr_hash, obs_json, file_name, file_size, file_path))
 
         if hash_added:
             # FileHash added, no need to add anymore properties
@@ -389,7 +393,7 @@ def parse_port_obj_type(prop, obs_json):
             artifact = dict()
             cef = dict()
             _set_cef_key(protocol_value, "value", cef, "transportProtocol")
-            cef["destinationPort"] = "-".join(value)
+            cef["destinationPort"] = "-".join(str(item) for item in get_list(value))
             artifact["name"] = "Port Object"
             artifact["cef"] = cef
             # append to the properties
@@ -435,7 +439,7 @@ def parse_address_obj_type(prop, obs_json):
         if condition == "InclusiveBetween":
             artifact = dict()
             cef = dict()
-            cef["destinationAddress"] = "-".join(value)
+            cef["destinationAddress"] = "-".join(str(item) for item in get_list(value))
             artifact["name"] = "Address Object"
             artifact["cef"] = cef
             # append to the properties
@@ -480,11 +484,11 @@ def parse_common_obj_type(prop, obs_json, key_name, cef_key, artifact_name):
         if condition == "InclusiveBetween":
             artifact = dict()
             cef = dict()
-            cef[cef_key] = "-".join(value)
+            cef[cef_key] = "-".join(str(item) for item in get_list(value))
             artifact["name"] = artifact_name
             artifact["cef"] = cef
             # append to the properties
-            artifacts.append(artifacts)
+            artifacts.append(artifact)
             obs_json["properties"].append(artifact)
 
         elif condition == "Equals":
@@ -496,7 +500,7 @@ def parse_common_obj_type(prop, obs_json, key_name, cef_key, artifact_name):
                 artifact["name"] = artifact_name
                 artifact["cef"] = cef
                 # append to the properties
-                artifacts.append(artifacts)
+                artifacts.append(artifact)
                 obs_json["properties"].append(artifact)
 
     return artifacts
@@ -552,8 +556,10 @@ def parse_property(prop, obs_json):
             parse_email_obj_type(prop, obs_json)
         elif prop["xsi:type"] == "WindowsRegistryKeyObjectType":
             parse_win_reg_key_obj_type(prop, obs_json)
-    except:
-        pass
+    except Exception:
+        prop_type = prop.get("xsi:type") if isinstance(prop, dict) else None
+        logger.exception("Failed to parse observable property (xsi:type=%s)", prop_type)
+        raise
 
     return
 
