@@ -896,8 +896,14 @@ def _set_cef_key(src_dict, src_key, dst_dict, dst_key, cs_label_key=None, cs_lab
     return True
 
 
-def get_artifacts_from_observable(obs_id, observables, label):
+def get_artifacts_from_observable(obs_id, observables, label, visited=None):
     observable_artifacts = []
+    if visited is None:
+        visited = set()
+    if obs_id in visited:
+        return observable_artifacts
+    visited.add(obs_id)
+
     observable = observables.get(obs_id)
     if not observable:
         # We were given an idref that points to an observable that was not defined.
@@ -905,7 +911,7 @@ def get_artifacts_from_observable(obs_id, observables, label):
 
     if "observable_idrefs" in observable:
         for observable_idref in observable["observable_idrefs"]:
-            obs_artifacts = get_artifacts_from_observable(observable_idref, observables, label)
+            obs_artifacts = get_artifacts_from_observable(observable_idref, observables, label, visited)
             observable_artifacts.extend(obs_artifacts)
 
     if "properties" in observable:
