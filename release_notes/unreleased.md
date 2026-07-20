@@ -4,3 +4,4 @@
 * Rejected STIX documents when observable properties cannot be parsed. (PAPP-38031)
 * Stopped cyclic STIX observable references from expanding repeatedly. (PAPP-38031)
 * Tolerated malformed FireEye request headers without aborting ingestion. (PAPP-38031)
+* Suppressed server tracebacks from REST API error responses. (PAPP-38031)
