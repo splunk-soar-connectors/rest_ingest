@@ -62,14 +62,16 @@ def _set_cef_key(src_dict, src_key, dst_dict, dst_key):
 
 
 def set_url(http_header, cef):
-    # get the request line
-    request, header_str = http_header.split("\r\n", 1)
+    if not isinstance(http_header, str):
+        return
+
+    request, _, header_str = http_header.partition("\r\n")
     headers = email.message_from_string(header_str)
 
-    # Remove multiple spaces if any. always happens in http request line
-    request = " ".join(request.split())
-
-    url = request.split()[1]
+    request_tokens = request.split()
+    if len(request_tokens) < 2:
+        return
+    url = request_tokens[1]
 
     if url:
         host = headers.get("Host")
@@ -165,7 +167,7 @@ def parse_alert(alert, result, artifact_common):
     if intf:
         _set_cef_key(intf, "interface", cef, "deviceInboundInterface")
 
-    explanation = alert.get("explanation")
+    explanation = alert.get("explanation") or {}
     if explanation:
         _set_cef_key(explanation, "@protocol", cef, "transportProtocol")
 
@@ -192,7 +194,7 @@ def parse_alert(alert, result, artifact_common):
             _set_cef_key(malware, "downloaded-at", cef, "fileCreateTime")
             cef["cs3Label"] = "httpHeader"
             _set_cef_key(malware, "http-header", cef, "cs3")
-            if "http-header" in malware:
+            if "cs3" in cef:
                 set_url(cef["cs3"], cef)
 
     # Artifact for cnc-services
@@ -221,12 +223,10 @@ def parse_alert(alert, result, artifact_common):
                 cef["cs1Label"] = "channel"
                 _set_cef_key(service, "channel", cef, "cs1")
                 if "channel" in service:
-                    sanitized_header = cef["cs1"].replace("::~~", "\r\n")
-                    try:
-                        set_url(sanitized_header, cef)
-                    except:
-                        # Most probably, not a valid http header
-                        pass
+                    sanitized_header = cef["cs1"]
+                    if isinstance(sanitized_header, str):
+                        sanitized_header = sanitized_header.replace("::~~", "\r\n")
+                    set_url(sanitized_header, cef)
 
     return
 
