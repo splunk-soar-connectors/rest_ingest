@@ -1,3 +1,3 @@
 **Unreleased**
 
-* - Refresh connector validation tooling.
+* - Allow stock REST Data Source parser alerts to trigger configured SOAR automation.

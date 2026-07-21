@@ -26,12 +26,10 @@ ARTIFACT_LABEL_ANALYSIS = "Analysis"
 # dictionary that contains the comman keys in the container
 _container_common = {
     "description": "Container added by Phantom",
-    "run_automation": False,  # Don't run any playbooks, when this container is added
 }
 _artifact_common = {
     "type": "network",
     "description": "Artifact added by Phantom",
-    "run_automation": False,  # Don't run any playbooks, when this artifact is added
 }
 
 
