@@ -31,12 +31,10 @@ logger = logging.getLogger(__name__)
 # dictionary that contains the common keys in the container
 _container_common = {
     "description": "Container added by Phantom",
-    "run_automation": False,  # Don't run any playbooks, when this container is added
 }
 _artifact_common = {
     "type": "network",
     "description": "Artifact added by Phantom",
-    "run_automation": False,  # Don't run any playbooks, when this artifact is added
 }
 
 
