@@ -177,10 +177,10 @@ def handle_request(request, path_parts):
                 response_json = response.json()
 
                 if response_json.get("success", False) is False and response_json.get("message", "").startswith("duplicate"):
-                    response = _call_phantom_rest_api(
-                        request, os.path.join("container", str(response_json["existing_container_id"])), "post", json=container
+                    return HttpResponse(
+                        "A container already exists for this asset and source data identifier; refusing duplicate ingestion",
+                        status=409,
                     )
-                    response_json = response.json()
 
                 container_id = response_json.get("id")
                 if not container_id:
