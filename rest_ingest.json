@@ -11,7 +11,7 @@
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
-    "min_phantom_version": "6.3.0",
+    "min_phantom_version": "8.9.0",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
     "license": "Copyright (c) 2016-2026 Splunk Inc.",
@@ -25,7 +25,7 @@
     "rest_handler": "rest_connector.handle_request",
     "configuration": {
         "parse_script": {
-            "data_type": "file",
+            "data_type": "python_script",
             "description": "Custom Python REST handler",
             "extensions": ".py",
             "order": 0
