@@ -1,3 +1,3 @@
 **Unreleased**
 
-* Classify custom Python REST handlers as code so Splunk SOAR enforces the Edit Code permission.
+* Require Edit Code for custom Python REST handlers and restrict handlers to REST Data Source assets.

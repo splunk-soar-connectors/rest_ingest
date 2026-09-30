@@ -109,7 +109,14 @@ def handle_request(request, path_parts):
 
     asset_name = path_parts.pop(0)
     response = _call_phantom_rest_api(
-        request, "asset", "get", params={"_filter_name": _quote_wrap(asset_name), "_filter_disabled": _quote_wrap(False)}
+        request,
+        "asset",
+        "get",
+        params={
+            "_filter_name": _quote_wrap(asset_name),
+            "_filter_disabled": _quote_wrap(False),
+            "_filter_app__appid": _quote_wrap(connector_id),
+        },
     )
     response_json = response.json()
     if int(response_json.get("count", 0)) == 0:
