@@ -11,7 +11,7 @@
     "package_name": "phantom_restingest",
     "product_vendor": "Generic",
     "product_name": "REST Data Source",
-    "min_phantom_version": "6.3.0",
+    "min_phantom_version": "8.9.0",
     "logo": "logo_restapi.svg",
     "logo_dark": "logo_restapi_dark.svg",
     "license": "Copyright (c) 2016-2026 Splunk Inc.",
@@ -25,7 +25,7 @@
     "rest_handler": "rest_connector.handle_request",
     "configuration": {
         "parse_script": {
-            "data_type": "file",
+            "data_type": "python_script",
             "description": "Custom Python REST handler",
             "extensions": ".py",
             "order": 0
@@ -61,7 +61,7 @@
             },
             {
                 "module": "lxml",
-                "input_file": "wheels/py39/lxml-6.1.1-cp39-cp39-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl"
+                "input_file": "wheels/py39/lxml-6.1.3-cp39-cp39-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl"
             },
             {
                 "module": "mixbox",
@@ -105,7 +105,7 @@
             },
             {
                 "module": "lxml",
-                "input_file": "wheels/py313/lxml-6.1.1-cp313-cp313-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl"
+                "input_file": "wheels/py313/lxml-6.1.3-cp313-cp313-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl"
             },
             {
                 "module": "mixbox",
