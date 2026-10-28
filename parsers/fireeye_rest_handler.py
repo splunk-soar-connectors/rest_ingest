@@ -22,6 +22,11 @@ from parse import parse
 
 ARTIFACT_LABEL_ALERT = "Alert"
 ARTIFACT_LABEL_ANALYSIS = "Analysis"
+_SEVERITY_MAP = {
+    "crit": "high",
+    "majr": "high",
+    "minr": "medium",
+}
 
 # dictionary that contains the comman keys in the container
 _container_common = {
@@ -120,7 +125,8 @@ def parse_alert(alert, result, artifact_common):
         container["start_time"] = start_time
 
     severity = alert.get("@severity", alert.get("severity", "medium"))
-    container["severity"] = "high" if severity == "crit" else "medium"
+    normalized_severity = severity.strip().lower() if isinstance(severity, str) else ""
+    container["severity"] = _SEVERITY_MAP.get(normalized_severity, "medium")
 
     artifact_label = ARTIFACT_LABEL_ALERT
 
